@@ -1,0 +1,132 @@
+\documentclass[a4paper]{article}
+
+\usepackage[swedish]{babel}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\newtheorem{theorem}{Sats}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Korollarium}
+\newtheorem{example}[theorem]{Exempel}
+
+\author{John Paul Edward Möller}
+\title{Lösning av 3-SAT med neurala nätverk}
+
+\begin{document}
+\maketitle
+
+  \section{Introduktion} \label{sec:Introduktion}
+  här står det saker
+
+ \section{Komplexitet} \label{sec:Komplexitet}
+ 
+ \subsection{P vs NP}%
+ \label{sub:pnp}
+ 
+ 'P vs NP' eller 'P = NP' är ett Millenium problem, d.v.s ett av sju
+ problem som Clay Institutet erbjuder en miljon dollar för en lösning.
+ Det behandlar om de två komplexitetsklasserna 
+ 
+ \subsection{Propositionell Logik}%
+ \label{sub:prop_log}
+
+ I gymnasial matematik behandlar man främst variabler som ingår i oändliga
+ mängder såsom de naturliga, reella och komplexa talen. Men det kan vara
+ väldigt användbart att använda sig av matematik som behandlar variabler som
+ ingår i enkla mängder. Dock så vill man forfarande att det ska vara användbart.
+ Den tomma mängden och en mängd med ett element är enkla med de är inte särskillt
+ användbara; en variabel kan ej ingå i en tom mängd och en variabel i en mängd
+ med ett element är ju redan löst. Så vi kommer betrakta matematik som
+ behandlar variabler som ingår i en mängd med två element. Sådan matematik
+ kallas Propositionell logik.
+ 
+ \begin{definition}
+ \label{def:bool_var}
+ Ett element i mängden $\mathbb{B} = \left\{ 0,1 \right\} $ kallas för ett
+ booleskt värde.
+ \end{definition}
+
+ Likt de tidigare mängderna, kan $0$ och  $1$ symbolisera kvantiteter, men
+ styrkan med booleska variabler är att $0$ och $1$ kan symbolisera saker som
+ är i motsats till varandra. Detta kan vara falskt och sant, av och på, ner och
+ upp o.s.v..  När propositionell logik diskuteras i fortsättningen av denna text
+ kommer orden 'falskt' och 'sant' användas syonymt med siffrorna $0$ och $1$ respektivt.
+ 
+ Med mängderna som de naturliga, reella och komplexa talen fanns det en tydlig
+ betydelse av operationerna plus,minus,gånger och division. Detta är dock inte
+ lika tydligt med booleska värden. Istället defineras följande två
+ operationer.
+
+ \begin{definition}
+ \label{def:and}
+ Om $A,B \in \mathbb{B}$ så är $A * B  $ lika med $1$ om och endast om $A$ och $B$ 
+ är båda lika med $1$, annars är det lika med $0$. $A * B$ utalas 'A och B'.
+ \end{definition}
+
+ \begin{definition}
+ \label{def:or}
+ Om $A,B \in \mathbb{B}$ så är $A + B$ lika med $0$ om och endast om både $A$
+ och $B$ är lika med $0$, annars är det lika med $1$. $A+B$ utalas 'A eller B'.
+ \end{definition}
+
+ \begin{example}
+ \label{eg:sky}
+ Låt påståendet 'Himlen är ibland blå' betecknas med variabeln $A$, låt påståendet
+ 'Himlen är ibland svart' betecknas med variabeln $B$ och låt påståendet 'Himlen
+ är ibland grön' betecknas med variabeln $C$. Alltså:
+ \[
+   A=1,B=1,C=0
+ .\] 
+
+ 'Himlen är ibland blå och himlen är ibland svart' är då sant och kan uttryckas
+ som:
+ \[
+ A*B = 1
+ .\] 
+
+ 'Himlen är ibland blå och himlen är ibland grön' är då falskt och kan
+ uttryckas som:
+ \[
+ A*C = 0
+ .\] 
+
+ 'Himlen är ibland blå eller himlen är ibland grön' är då sant och kan
+ uttryckas som:
+ \[
+ A+C = 1
+ .\] 
+ \end{example}
+
+
+ Som man ser i exempel \ref{eg:sky} så är definitionen 'och' ganska synonymt
+ till hur man använder ordet i vardagligt språk. Sista påståendet som använde
+ 'eller' översätts inte lika tydligt i vissa vardagliga uttryck, då det kan uppfattas
+ som en fråga. Men i matematiska sammanhang är det alltid ett påstående.
+
+ \begin{definition}
+ \label{def:dis}
+ En formel som är bara kopplade med 'eller' d.v.s på formen $a_1 \land  a_2
+ \wedge  a_3\ldots$ upp till $n$, kallas för en disjunktion.
+ \end{definition}
+ 
+
+ 
+
+ \subsection{3-SAT}%
+ \label{sub:3sat}
+
+
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+
+\end{document}
