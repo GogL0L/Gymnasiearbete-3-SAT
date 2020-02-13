@@ -61,61 +61,113 @@
 
  \begin{definition}
  \label{def:and}
- Om $A,B \in \mathbb{B}$ så är $A * B  $ lika med $1$ om och endast om $A$ och $B$ 
- är båda lika med $1$, annars är det lika med $0$. $A * B$ utalas 'A och B'.
+ Om $A,B \in \mathbb{B}$ så är $A \land  B  $ lika med $1$ om och endast om $A$ och $B$ 
+ är båda lika med $1$, annars är det lika med $0$. $A \land  B$ uttalas 'A och B'.
  \end{definition}
 
  \begin{definition}
  \label{def:or}
- Om $A,B \in \mathbb{B}$ så är $A + B$ lika med $0$ om och endast om både $A$
- och $B$ är lika med $0$, annars är det lika med $1$. $A+B$ utalas 'A eller B'.
+ Om $A,B \in \mathbb{B}$ så är $A  \vee  B$ lika med $0$ om och endast om både $A$
+ och $B$ är lika med $0$, annars är det lika med $1$. $A \vee B$ uttalas 'A eller B'.
  \end{definition}
 
  \begin{example}
  \label{eg:sky}
  Låt påståendet 'Himlen är ibland blå' betecknas med variabeln $A$, låt påståendet
  'Himlen är ibland svart' betecknas med variabeln $B$ och låt påståendet 'Himlen
- är ibland grön' betecknas med variabeln $C$. Alltså:
+ är ibland grön' betecknas med variabeln $C$. Om vi instämmer på att himlen
+ aldrig är grön så har vi:
  \[
    A=1,B=1,C=0
  .\] 
 
- 'Himlen är ibland blå och himlen är ibland svart' är då sant och kan uttryckas
+ 'Himlen är ibland blå och himlen är ibland svart' är sant. Detta  kan uttryckas
  som:
  \[
- A*B = 1
+ A\land B = 1
  .\] 
 
- 'Himlen är ibland blå och himlen är ibland grön' är då falskt och kan
+ 'Himlen är ibland blå och himlen är ibland grön' är falskt. Detta kan
  uttryckas som:
  \[
- A*C = 0
+ A\land C = 0
  .\] 
 
- 'Himlen är ibland blå eller himlen är ibland grön' är då sant och kan
+ 'Himlen är ibland blå eller himlen är ibland grön' är sant. Detta kan
  uttryckas som:
  \[
- A+C = 1
+ A \vee C = 1
  .\] 
  \end{example}
 
 
- Som man ser i exempel \ref{eg:sky} så är definitionen 'och' ganska synonymt
+ Som man ser i exempel \ref{eg:sky} så är definitionen för 'och' ganska synonymt
  till hur man använder ordet i vardagligt språk. Sista påståendet som använde
  'eller' översätts inte lika tydligt i vissa vardagliga uttryck, då det kan uppfattas
  som en fråga. Men i matematiska sammanhang är det alltid ett påstående.
 
  \begin{definition}
- \label{def:dis}
- En formel som är bara kopplade med 'eller' d.v.s på formen $a_1 \land  a_2
- \wedge  a_3\ldots$ upp till $n$, kallas för en disjunktion.
+ \label{def:neg}
+ Negationen av en boolesk variabel $A$ kan skrivas som $\overline{A}$.
+ $\overline{A}=0$ då $A=1$ och $\overline{A} = 1$ då $A=0$.
  \end{definition}
+
+ Det finns många fler operationer som kan defineras, men alla dessa kan
+ defineras som en formel som innehåller 'och', 'eller' och negation.
+
+ 
+ 
+
+ \begin{definition}
+ \label{def:dis}
+ En formel som endast innehåller operationen 'eller' d.v.s på formen $a_1 \vee a_2 \vee
+ a_3  \ldots$ upp till $a_n$, kallas för en disjunktion.
+ \end{definition}
+
+ \begin{example}
+ \label{eg:dis}
+ Följande formel är en disjunktion:
+ \[
+ a_1 \vee \overline{a_2} \vee \overline{a_3} \vee \overline{a_1}
+ .\] 
+ \end{example}
+ 
+
+ \begin{definition}
+ \label{def:con}
+ En formel som endast innehåller operationen 'och' med variabler som kan
+ negeras d.v.s på formen $a_1 \vee
+ a_2 \vee a_3 \ldots a_{n} + a_{n+1}$ upp till $a_n$ kallas för en konjuktion.
+ \end{definition}
+ 
+ 
  
 
  
 
  \subsection{3-SAT}%
  \label{sub:3sat}
+
+ \begin{definition}
+ \label{def:3sat}
+
+ 3-SAT är problemet att bestämma om man kan välja värden på sina variabler så
+ att en formell som består av konjuktioner av disjunktioner av högst tre
+ variabler blir sann.
+ 
+ \end{definition}
+
+ \begin{example}
+ \label{eg:3sat}
+ Formeln \[
+ \left(  a_1 \vee a_2 \vee a_3 \right) \land \left( \overline{a_1} \vee a_2 \vee 
+ \overline{a_3} \right)  .\] 
+
+ är satisferbar då den har lösningen $a_1,a_2,a_3=1$.
+ \end{example}
+ 
+ 
+ 
 
 
 

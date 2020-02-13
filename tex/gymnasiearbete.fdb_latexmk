@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1581611390 "gymnasiearbete.tex" "gymnasiearbete.pdf" "gymnasiearbete" 1581611390
+["pdflatex"] 1581637911 "gymnasiearbete.tex" "gymnasiearbete.pdf" "gymnasiearbete" 1581637911
   "/etc/texmf/web2c/texmf.cnf" 1581157653 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/john/texmf/tex/generic/babel-swedish/swedish.ldf" 1367879024 6735 652c52aa65209178f7b583989d4d9902 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -27,6 +27,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1248133631 32362 179c33bbf43f19adbb3825bb4e36e57a ""
@@ -49,9 +50,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1562720991 35073 2a40cfca74fcd5e2568b569ccaadf3f1 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1581157666 75955 f78456fd1308dc295dc476a68e28d85b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1581157668 797298 f8045577aa7eea9a046b9eaafabf0d27 ""
-  "gymnasiearbete.aux" 1581611390 862 92538054443410542e0d82d4d7c66f04 "pdflatex"
-  "gymnasiearbete.tex" 1581611389 4057 f679509ca2b2f12d69519e2d3a089bd0 ""
+  "gymnasiearbete.aux" 1581637911 1008 d3cbe0e5133d7ff5322c83f51fc6979b "pdflatex"
+  "gymnasiearbete.tex" 1581637910 5389 a34aef9376fbf5f00589a98fe2a14bec ""
   (generated)
+  "gymnasiearbete.log"
   "gymnasiearbete.aux"
   "gymnasiearbete.pdf"
-  "gymnasiearbete.log"
