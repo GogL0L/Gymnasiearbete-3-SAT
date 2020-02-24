@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1581637911 "gymnasiearbete.tex" "gymnasiearbete.pdf" "gymnasiearbete" 1581637911
+["pdflatex"] 1581693298 "gymnasiearbete.tex" "gymnasiearbete.pdf" "gymnasiearbete" 1581693298
   "/etc/texmf/web2c/texmf.cnf" 1581157653 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/john/texmf/tex/generic/babel-swedish/swedish.ldf" 1367879024 6735 652c52aa65209178f7b583989d4d9902 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -50,8 +50,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1562720991 35073 2a40cfca74fcd5e2568b569ccaadf3f1 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1581157666 75955 f78456fd1308dc295dc476a68e28d85b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1581157668 797298 f8045577aa7eea9a046b9eaafabf0d27 ""
-  "gymnasiearbete.aux" 1581637911 1008 d3cbe0e5133d7ff5322c83f51fc6979b "pdflatex"
-  "gymnasiearbete.tex" 1581637910 5389 a34aef9376fbf5f00589a98fe2a14bec ""
+  "gymnasiearbete.aux" 1581693298 1008 d3cbe0e5133d7ff5322c83f51fc6979b "pdflatex"
+  "gymnasiearbete.tex" 1581693298 5358 dc91758e22b93a6f9f5cc5ee167ca2ce ""
   (generated)
   "gymnasiearbete.log"
   "gymnasiearbete.aux"
