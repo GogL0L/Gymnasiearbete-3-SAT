@@ -51,9 +51,15 @@ def generate_formula(seed, debug=False):
 
 
 number = 123678173
-stuff =generate_formula(number)
-print ("Seed: ", number)
-print (stuff)
-print ("Validity: ", check(stuff))
+number2 = 123479872359201234
+stuff =generate_formula(number2)
+def main():
+    print ("Seed: ", number2)
+    print (stuff)
+    print ("Validity: ", check(stuff))
+
+
+if __name__ == '__main__':
+    main()
 
 
