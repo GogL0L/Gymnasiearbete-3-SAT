@@ -27,7 +27,17 @@
  
  'P vs NP' eller 'P = NP' är ett Millenium problem, d.v.s ett av sju
  problem som Clay Institutet erbjuder en miljon dollar för en lösning.
- Det behandlar om de två komplexitetsklasserna 
+ Det behandlar om de två komplexitetsklasserna P och NP är lika eller om det
+ finns problem som ingår i NP men inte P. Nån rigorös definition för
+ komplexitetsklass, P eller NP kommer ej ingå i denna text. Det vässentliga att
+ förstå från det här, är att P och NP är två mängder av problem. P anses vara
+ enkelt att lösa för en dator, och NP är svårare. Många algoritmer som ingår
+ i NP har visat sig ha en motsvarande algoritm som ingår i P. Detta är ju
+ positivt eftersom man nu kan lösa problemet mycket snabbare. P vs NP ställer
+ frågan om man kan för alla problem i NP hitta en motsvarande i P. Trots att
+ P och NP inte kommer rigoröst defineras i denna text, kommer det ändå
+ presenteras en frågeställning av problemet. Detta genom ett problem formulerad
+ i Propositionell Logik, som har visats vara en ekvivalent fråga.
  
  \subsection{Propositionell Logik}%
  \label{sub:prop_log}
@@ -120,7 +130,8 @@
  \begin{definition}
  \label{def:dis}
  En formel som endast innehåller operationen 'eller' d.v.s på formen $a_1 \vee a_2 \vee
- a_3  \ldots$ upp till $a_n$, kallas för en disjunktion.
+ a_3  \ldots \overline{a_{n}} \vee \overline{a_{n+1}} \vee \overline{a_{n+2}}
+ \ldots$ upp till $a_n$, kallas för en disjunktion.
  \end{definition}
 
  \begin{example}
@@ -156,6 +167,7 @@
  
  \end{definition}
 
+
  \begin{example}
  \label{eg:3sat}
  Formeln \[
@@ -164,16 +176,12 @@
 
  är satisferbar då den har lösningen $a_1,a_2,a_3=1$.
  \end{example}
- 
- 
- 
 
+\begin{theorem}%
+\label{thm:3SATNP}
+3-SAT och P vs NP är två ekvivalenta problem.
+\end{theorem}
 
-
- 
- 
-
- 
  
  
  
