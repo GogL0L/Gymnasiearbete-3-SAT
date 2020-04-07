@@ -8,13 +8,13 @@ def check(string, debug=False, return_valid_asignment=False):
     can be satisfied or not.
     """
     if debug:
-        result =subprocess.check_output(["python", "simple-sat/src/sat.py","-v", "-ti", string])
+        result = subprocess.check_output(["python", "simple-sat/src/sat.py","-v", "-ti", string])
         return result
     if return_valid_asignment:
         result = subprocess.check_output(["python", "simple-sat/src/sat.py", "-ti", string])
         return result
     else:
-        result =subprocess.check_output(["python", "simple-sat/src/sat.py", "-ti", string])
+        result = subprocess.check_output(["python", "simple-sat/src/sat.py", "-ti", string])
         if result == "" or result == b'':
             # print ('result =', [result])
             return 0
@@ -24,7 +24,7 @@ def check(string, debug=False, return_valid_asignment=False):
 
 
 def generate_formula(seed, debug=False):
-    """Generates a formula that can checked with the check function.
+    """Generates a formula that can be checked with the check function.
     """
     digits = seed
     formula = []
@@ -50,21 +50,3 @@ def generate_formula(seed, debug=False):
         disjunction_counter += 1
 
     return "".join(formula)
-
-
-def main():
-    counter_example = [0,0,0,5,5,5]
-    number = 123678173
-    number2 = 123479872359201234
-    stuff =generate_formula(counter_example)
-
-    print ("Seed: ", counter_example)
-    print (stuff)
-    print ("Validity: ", check(stuff, debug=False, return_valid_asignment=False))
-
-
-if __name__ == '__main__':
-     main()
-
-
-
