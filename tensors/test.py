@@ -1,7 +1,0 @@
-from subprocess import call
-
-
-f1 = "~1 ~2," \
-     "~1 2"
-
-call(["python", "~/Documents/gymarb/simple-sat/src/sat.py", "-ti", f1])
