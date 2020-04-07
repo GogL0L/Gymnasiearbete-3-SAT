@@ -14,8 +14,9 @@ def int_list(string):
 
 
 def create_training_data():
-    """Creates 60000 pairs of input and output training data exported
-    respectively as 'x_train.npy' and 'y_train.npy'.
+    """Creates 60000 formulas and their respective results of satisfiability.
+    The input and output training data is exported respectively as 'x_train.npy'
+    and 'y_train.npy' into a directory named '/data'.
     """
     # Numpy requires that the first entry establishes the dimension of
     # the first array if arrays are to be appended.
@@ -34,29 +35,30 @@ def create_training_data():
         # Entry appended to x_train
         x_train = np.concatenate((x_train, [array_to_append]))
 
-        #Generating and appending the corrseponding output value
+        # Generating and appending the corresponding output value
         formula = sat.generate_formula(array_to_append)
         value_to_append = sat.check(formula)
         y_train = np.append(y_train, value_to_append)
 
         # Prints out each integer percent progress through the loop
         if num % 600 == 0:
-            print (100 - ((60000 - i) / 600), " percent")
+            print (100 - ((60000 - num) / 600), " percent")
 
     # Because x_train had to be initiated with a first entry,
     # it is now deleted.
     x_train = np.delete(x_train, 0, 0)
 
-    # Data saved to x_train.npy and y_train.npy
-    np.save('x_train',x_train)
-    np.save('y_train',y_train)
+    # Data saved as 'x_train.npy' and 'y_train.npy'
+    np.save('data/x_train', x_train)
+    np.save('data/y_train', y_train)
 
-    print("Training data has succesfully been generated.")
+    print("Training data has successfully been generated.")
 
 
 def create_test_data():
-    """Creates 10000 pairs of input and output test data exported
-    respectively as 'x_test.npy' and 'y_test.npy'.
+    """Creates 10000 formulas and their respective results of satisfiability.
+    The input and output test data is exported respectively as 'x_test.npy' and
+    'y_test.npy' into a directory named '/data'.
     """
     # This method is identical to the create_test_data function
     # except x_train and y_train are respectively exchanged with
@@ -71,31 +73,26 @@ def create_test_data():
         tail_array = np.random.randint(10, size=67)
         array_to_append = np.concatenate((head_array,tail_array))
         x_test = np.concatenate((x_test, [array_to_append]))
-        # print ("input: ", array_to_append)
 
         formula = sat.generate_formula(array_to_append)
         value_to_append = sat.check(formula)
         y_test = np.append(y_test, value_to_append)
-        # print ("output: ", str(sat.check(formula)))
 
         if num % 100 == 0:
             print (100 -((70000 - num ) / 100), " percent")
 
     x_test = np.delete(x_test, 0, 0)
 
-    np.save('x_test',x_test)
-    np.save('y_test',y_test)
+    np.save('data/x_test',x_test)
+    np.save('data/y_test',y_test)
 
-    print ("The test data has succesfully been generated.")
+    print ("The test data has successfully been generated.")
 
 
-def fix_first_entry():
-    x_train = np.load("x_train.npy")
-    x_test = np.load("x_test.npy")
+def main():
+    create_training_data()
+    create_test_data()
 
-    new_x_train = np.delete(x_train,[0])
-    new_x_test = np.delete(x_test, [0])
 
-    np.save('x_train',new_x_train)
-    np.save('x_test', new_x_test)
-
+if __name__ == "__main__":
+    main()
