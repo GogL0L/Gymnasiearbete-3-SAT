@@ -1,0 +1,60 @@
+\docume\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amscd, amsthm, amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\oddsidemargin 0pt
+\evensidemargin 0pt
+\marginparwidth 40pt
+\marginparsep 10pt
+\topmargin -20pt
+\headsep 10pt
+\textheight 8.7in
+\textwidth 6.65in
+\linespread{1.2}
+
+
+\usepackage[swedish]{babel}
+
+\newtheorem{theorem}{Sats}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Korollarium}
+\newtheorem{example}[theorem]{Exempel}
+
+\author{John Paul Edward Möller}
+\title{Här står det saker}
+
+\begin{document}
+\maketitle
+
+
+\section{Stuff}
+\label{sec:orgb795bf2}
+Och här står det om stuff
+
+\section{Saker i}
+\label{sec:org54d8a01}
+
+\subsection{Här är sakerna som är i}
+\label{sec:org173b434}
+
+\subsubsection{Sakerna}
+\label{sec:orgdaa4786}
+wowowowowo
+
+\subsubsection{Som är}
+\label{sec:org6ee4312}
+vad coolt
+
+\subsubsection{I}
+\label{sec:org8ba5e50}
+Mycket cool
+
+\subsection{Andrasaker}
+\label{sec:org093e00f}
+a det är ganska cool
+\end{document} Här står det saker
+
+\end{document}

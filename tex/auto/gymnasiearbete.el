@@ -2,20 +2,25 @@
  "gymnasiearbete"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
-                     '(("article" "a4paper")))
+                     '(("article" "11pt")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("babel" "swedish")))
    (TeX-run-style-hooks
     "latex2e"
     "article"
-    "art10"
-    "babel"
+    "art11"
+    "amsmath"
+    "amssymb"
+    "amscd"
     "amsthm"
-    "amssymb")
+    "amsfonts"
+    "graphicx"
+    "hyperref"
+    "babel")
    (LaTeX-add-labels
     "sec:Introduktion"
-    "sec:Komplexitet"
     "sub:pnp"
+    "sec:Komplexitet"
     "sub:prop_log"
     "def:bool_var"
     "def:and"
@@ -27,7 +32,8 @@
     "def:con"
     "sub:3sat"
     "def:3sat"
-    "eg:3sat")
+    "eg:3sat"
+    "thm:3SATNP")
    (LaTeX-add-amsthm-newtheorems
     "theorem"
     "definition"

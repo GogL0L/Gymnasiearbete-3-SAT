@@ -1,0 +1,102 @@
+#+title: Djupinlärning av 3-SAT
+
+* Anteckningar
+
+** Förklara orden:
+   Modul, dimension av vektor, vektorkomponent
+
+* Abstract
+* Inledning
+** Bakgrund
+** Syfte och Frågeställning
+* Teori
+** Propositionell logik
+** Linjär algebra
+** Deep learning
+*** Bildlig förklaring
+*** Linjär algebra
+*** Flervariabel analys
+** Introduktion till python
+* Metod
+** Skapandet av datan
+*** Krav på datan
+    Oavsett hur man bygger upp det neurala nätverket så behövs det
+    data med exempel som är redan lösta. I detta arbete är syftet se om
+    ett neuralt nätverk kan avgöra om ett 3-SAT problem är satisferbart
+    eller inte. Alltså ska inputen vara ett 3-SAT problem och outputen vara
+    en indikation på om det är satisferbart eller inte. För konstruktion
+    av de neurala nätverk kommer modulen Tensorflow användas. Med den modulen
+    krävs det att man har två listor: en för inputen och en för outputen. Alltså
+    kommer första exemplets formell vara första elementet i inputlistan och
+    svaret kommer vara första elementet i outputlistan. I detta arbete valdes det
+    60 000 träningsexempel och 10 000 utvärderingsexempel. Träningsexempelerna
+    är de exempel det neurala nätverket kommer analysera och anpassa sig efter.
+    Utvärderingsexemplerna är de som kommer användas i betygsättning av hur
+    bra nätverket fungerar. Anledningen varför dessa måste vara separata är att
+    det är väldigt enkelt för neurala nätverk att endast memorera exemplerna
+    som användes vid träningen. Därför krävs det att exempelerna är unika
+    så att inget exempel i träningsdatan finns dessutom i utvärderingsdatan.
+
+    Ett annat krav är att inputen och outputen är i form av en vektor av
+    reella värden. Detta är inte ett problem för outputen då man kan ha en
+    2 dimensionell vektor där första värdet är sannolikheten att formeln är
+    falsk och andra värdet är sannolikheten att den är sann (se exempel1). En
+    lika tydlig lösning för inputen finns dock inte. Ett förslag är att 
+    associera ett värde till varje tecken och sedan låta antalet tecken
+    beteckna dimensionen på vektorn (se exempel2). Som man dock ser i exempel
+    (k0lla om det är två eller 2) två så är dimensionen av vektorn onödigt stor
+    då vissa tecken har alltid samma värde. De enda tecknen som kan vara olika
+    är variablerna. I denna text kommer detta faktum utnyttjas, då antalet 
+    variabler i uttrycket kommer motsvara dimensionen av vektorn. 
+    
+    # Ett annat krav är att andelen sanna och falska formler fördelar sig lika.
+    # Om ett svar skulle överväga så skulle nätverket kunna ställa in sig på att
+    # endast svara det som är i majoritet. Detta är ett problem eftersom 
+    # indikationen på om nätverket faktiskt gör någonting är att precisionen
+    # är högre än en gissning. En gissning i det här fallet är 50% då det finns
+    # två utfall. Antag t.ex. att det finns 
+
+**** Figurer till parent sektion:
+     exempel1, exempel2
+
+*** Omvandling av 3-SAT formler
+    Låt variablerna i en formel ordnas i viss order, exempelvis alfabetsordning
+    och sedan stigande i nummer index. Den första variabeln kommer motsvara
+    värdet 1, den andra 2, den tredje 3 o.s.v. Sedan när man har kodat för
+    den sista variabeln med värdet $n$ så låter man $n+1$ symbolisera
+    negationen av den första variabeln och $n+2$ negationen för den andra
+    variabeln o.s.v. Sedan låtes det första variabeltecknet i formeln koda 
+    för första värdet i vektorn och den andra den andra värdet 
+    o.s.v. (se exempel3).
+
+    I denna text kommer det dessutom begränsas till max 5 olika variabler
+    i varje formel. Därmed så kan varje heltal (om man tar hänsyn till ledande
+    nollor) symbolisera en unik formel (se exempel4). Detta löser nästan
+    problemet om att skapa 60 000 träningsexempel och 10 000 utvärderingsexempel
+    som är alla unika. Eftersom varje heltal motsvarar en unik formel så kan man
+    låta de talen från 0 till och med 59 999 koda för träningsexempelarna 
+    och talen 60 000 till 69 999 koda för utvärderingsexempelarna. Dock, somsagt
+    löser detta nästan problemet. Första problemet är att om man ska ha fem 
+    stycken värdesiffror så kommer formelerna vara fem variabler långa. Men 
+    ett 3-SAT problem är på formen av en konjuktion av disjuktioner av längden
+    tre variabler. Därför måste antalet variabler vara lika med en multipel 
+    av tre. Det andra problemet är att formeln är kort och när en formel 
+    är kortare så är det mindre chans att det blir en falsk formel (om man 
+    antar att antalet olika variabler håller sig konstant). Anledningen är att
+    fler konjuktioner begränsar antalet möjliga lösningar (om antalet variabler
+    håller sig konstant). Ett exempel på detta ges i (exempel5).
+    
+    Lösningen på detta är att införa slumpmässiga siffror efter. På detta vis
+    kommer alla exempel vara unika, och längden kan anpassas till en multipel
+    av tre. I denna text kommer längder
+
+**** Figurer till parent paragraf:
+     exempel3, exempel4, exempel5
+** Model 1
+** Model 2
+** Träning av datan
+* Resultat
+** Model 1
+** Model 2
+* Diskussion och slutsats
+** Sannolikhet att liknande (och därmed samma) sat formler fanns
