@@ -12,6 +12,9 @@
    Att jag har skrivit numpy.funktion men bör bara konsekvent med np.funktion
    instället
 
+** Figurer:
+   Neuralt nätverk
+
 ** Referenser:
    Att 3-sat är ett NP problem och alla NP problem är ekvivalenta.
 
@@ -33,6 +36,75 @@
 **** Paritalderivata
 **** 
 ** Grunderna till python och programering
+*** Programmering
+    Programering är ett sätt att skriva instruktioner för vad en dator
+   ska göra. Programmering utförs genom att skriva på ett "låtsas" språk
+   i en textfil. Sedan låter man datorn översätta textfilen direkt till ett 
+   program eller så låter man ett "tolk" program tolka instruktionerna i 
+   textfilen och utföra de direkt. "Låtsas" språk kallas mer formellt som
+   programspråk. De programspråk som kan översättas från en textfilen till ett 
+   program kallas kompilerade programspråk; De programsspråk där intruktionerna 
+   i textfilen tolkas direkt kallas interpreterade programspråk (fixa hänvisning 
+   här refA). 
+*** Python
+    Python är ett interpreterat programspråk. Detta är i fördel vid vetenskaplig
+    programmering då man kan snabbt få resultat och inte behöva vänta på att
+    koden kompileras. Instruktioner i python (och allmänt i programmering) ges
+    genom att skriva funktioner. Funktioner i programmering är väldigt lika 
+    till funktioner i matematik, men inte helt ekvivalenta. Funktioner i
+    python kan likt matematiska funktioner ta in ett tal och utföra någon 
+    operation och sedan mata ut det nya talet. Men den stora skillnaden är att
+    en funktion i programmering kan också utföra ett moment. Detta kan vara
+    att spara något i minnet, skicka ett medelande eller starta ett program. 
+    Tillskillnad från matematik, där funktioner betecknas med enstaka bokstäver,
+    så betecknas funktioner i programmering med ord eller mindre
+    meningar där varje ord är separerad med understreck. Den mest fundementala
+    och viktigaste funktionen vid lärning av python är funktionen "print". 
+    Funktionen talar om för tolkprogrammet att visa dess argument. Betrakta
+    följande kod:
+    
+#+BEGIN_SRC python
+print(5) 
+#+END_SRC
+
+    En femma visas då i tolkprogrammet som konsekvens. Python kod utförs 
+    uppifrån nedåt i ordning rad för rad. Så om man skriver
+
+#+BEGIN_SRC python
+print(5)
+print(4) 
+#+END_SRC
+
+    så kommer det först stå en femma och sedan stå en fyra. Python räknar ut
+    och förenklar automatiskt matematiska uttryck.
+
+#+BEGIN_SRC python
+print (9+10) 
+#+END_SRC
+
+     Resultatet av ovanstående kod blir då 19 och inte "9+10". Om man vill
+     bokstavligt skriva ut symbolerna nio, plustecken, etta och nolla så 
+     omringar man uttrycket med citattecken.
+
+#+BEGIN_SRC python
+print ("9+10") 
+#+END_SRC
+
+
+      Resultatet av ovanstående kod blir då "9+10" tillskillnad från koden innan.
+      Värden kan sparas i variabler.
+
+#+BEGIN_SRC python
+nummer = 2+2
+text = "10+20+30"
+
+print(nummer)
+print(text) 
+#+END_SRC
+
+
+*** figstuff
+    refA
 * Metod
 ** Skapandet av datan
 *** Krav på datan
@@ -473,7 +545,6 @@ np.save('data/y_train', y_train)
       Koden för utvärderingsdata är i princip likadan. Enda skillnaden är att
       num fick variera mellan 60 000 och 69 999 och datan sparades som x_test
       och y_test för input datan respektive output datan.
-**** Pythonkoden actually
 ** Skapandet av modellen
 *** Representation av modellen
     Modellen består alltså av 10 lager med 128 noder var, där Rectifier är 
@@ -564,8 +635,6 @@ model.evaluate(x_test, y_test, verbose=2)
    
    Och för träningsdatan var resultatet 50 %.
 * Diskussion och slutsats
-** Sannolikhet att liknande (och därmed samma) sat formler fanns
-** Presicionen var bara 50% som är lika med en gissning.
    Som man ser så var resultatet på samtliga delar av utvärderingsprocessen 
    50 %. Detta tyder med säkerhet att nätverket inte har hittat något mönster
    då det är lika med chansen för en gissning. Detta stödjer kontentan bland 
@@ -578,13 +647,8 @@ model.evaluate(x_test, y_test, verbose=2)
    träningsexempel begränsade till processorkraften och minnet tillgängligt.
 *** Ref och sånt
     ref3
-** Att man använder neurala nätverk för tydliga mönster och inte resonemang
-** Samtidigt att det finns ingen teori om hur man känner igen människo ansikten
-** Vad innebär att det finns en polynomisk algoritm för 3-sat
-*** Banksystem faller 
 ** Vidare forskning
 *** Djupare nätverk
-**** 
 
 * Appendix
 ** I
