@@ -6,7 +6,7 @@
    Modul, dimension av vektor, vektorkomponent, list (python), parametrar
    till en funktion (python), funktionparameter på följande vis: f(arg1, arg2)
    Rectifier, Sigmoid, objekt orienterade termer (objekt och metod), softmax, 
-   Stokastiskt gradient nedgång
+   Stokastiskt gradient nedgång, append (python)
    
 ** Fixa:
    Att jag har skrivit numpy.funktion men bör bara konsekvent med np.funktion
@@ -134,13 +134,7 @@
     är gjord för att användas i en terminal i linux.
 
     
-    
-    För att få tillgång
-    till att skicka kommandon till terminalen via python använder man modulen
-    subprocess. För subprocess.check_output tar in som argument ett terminal
-    kommando ger tillbaka resultatet av vad som skrevs i terminalen.
-
-
+   
 **** fig stuff
      exempelA
 
@@ -154,18 +148,157 @@ kodA
 #+BEGIN_SRC python
 digits = seed
 formula = []
-disjunction_counter  = 0
+disjunct_counter  = 0
 #+END_SRC
 
     Seed döps om av den enkla anledningen att det kommer hjälpa med tydlighet
     i en loop som kommer senare. Formula variabeln är där alla tecken till
     formeln kommer läggas till. Vid slutet av programmet kommer elementen i 
     formula sättas ihop till formel stringen, men eftersom man har mer 
-    kontroll med listor, defineras den som en tom lista i början.
+    kontroll med listor, defineras den som en tom lista i början. Variabeln
+    disjunct_counter räknar antalet variabler d.v.s siffror i stringen. Detta
+    behövs eftersom vid varje tredje variabel läggs det till en konjuktion, eller
+    i fallet av denna 3-SAT lösare ett komma.
+
+    Nästa del är att gå igenom varje siffra i digits och utföra ett av två fall och
+    eventuellt ett specialfall. Specialfallet är när disjunct counter är multipel
+    av tre. Då vill man lägga till ett komma och ett mellanslag. Så den första
+    if klasulen är:
+
+kodB
+#+BEGIN_SRC python
+if disjunct_counter % 3 == 0:
+   formula.append(",")
+   formula.append(" ")
+#+END_SRC
+
+    Det finns dock ett problem med denna kod. Noll är ju också en multipel av
+    tre och det innebär att ett komma och ett mellanslag kommer läggas till
+    i början av loopen då disjunct_counter börjar på noll. Så därför lägger
+    vi till kravet att disjunct_counter är dessutom inte lika med noll.
+    
+kodC
+#+BEGIN_SRC python
+if disjunct_counter % 3 == 0 and disjunct_counter !=0:
+   formula.append(",")
+   formula.append(" ")
+#+END_SRC
+
+     Sedan så finns det ett av två fall som alltid kommer ske exklusivt. Det ena
+     är att siffran är lägre än fem och den andra är att siffran är högre eller
+     lika med fem. Om siffran är lägre än fem så vill man lägga till siffran
+     och ett mellanslag till formula listan. Om siffran är högre så vill man 
+     lägga till tilde och en nolla om det är fem, tilde och en etta om det är sex
+     o.s.v. Alltså vill man därmed lägga till tilde och siffran minus 5, samt ett
+     mellanslag. Dessa två fall kan skrivas som följande:
+     
+kodD
+#+BEGIN_SRC python
+if int(digit)<5 :
+    formula.append(str(digit))
+    formula.append(" " )
+else:
+    formula.append("~")
+    formula.append(str(int(digit)-5))
+    formula.append(" ")
+#+END_SRC
+
+     Anledningen varför man lägger till str(digit) och inte bara digit är 
+     eftersom digit är av typen Int. För att kunna sätta ihop listan formula
+     så behövs det att alla element är av typen String. Funktionen str tar
+     siffran och ger tillbaka samma siffra fast med typen String. För att
+     sedan få funktionen att ge tillbaka formeln fast som en string skriver man:
+
+kodE
+#+BEGIN_SRC python
+return "".join(formula) 
+#+END_SRC
+
+      Funktionen "".join kanske ser märkligt ut först men det är helt enkelt
+      en funktion som tar en lista och ger tillbaka en string där varje element
+      är ihopsatt. Anledningen för den märkliga syntaxen är att det som är
+      emellan citattecknena är det som kopplar ihop elementen, betrakta exempelA.
+      Eftersom det inte ska vara något emellan elementen i listan formula
+      så skrivs det ingenting mellan citattecknena och därmed skrivs det "".join.
+
+      Så funktionen i helhet ser ut som följande.
+kodF
+#+BEGIN_SRC python
+def generate_formula(seed):
+   """Generates a formula that can be checked with the check function.
+   """
+   digits = seed
+   formula = []
+   disjunct_counter  = 0
+
+   for digit in digits:
+       if disjunct_counter % 3 == 0 and disjunct_counter != 0:
+           formula.append(",")
+           formula.append(" ")
+       if int(digit)<5 :
+           formula.append(str(digit))
+           formula.append(" " )
+           if debug:
+               print ("borde vara under 5: " + str(digit))
+       else:
+           formula.append("~")
+           formula.append(str(int(digit)-5))
+           formula.append(" ")
+           if debug:
+               print ("borde vara over 5: "+ str(digit))
+       disjunction_counter += 1
+
+   return "".join(formula)
+#+END_SRC
 
 **** Figurer och sånt
-     kodA
+     kodA, kodB, kodC, exempelA, kodD, kodE
+*** Satisferbarhet av formeln
+    För att få tillgång till att skicka kommandon till terminalen via python 
+    använder man modulen Subprocess. Funktionen subprocess.check_output tar 
+    in som argument ett terminal kommando ger tillbaka resultatet av vad som 
+    skrevs i terminalen. Dock så tar funktionen inte en string som input fast
+    istället en lista som sedan läggs ihop till en string där varje element är
+    separerad med mellanslag, se exempelB. För att tillkalla programmet i 
+    terminalen skriver man: 
+   
+kodG
+#+BEGIN_SRC bash
+python simple-sat/src/sat.py -ti "String som innehåller formeln på rätt format" 
+#+END_SRC
 
+    Så om variabeln string innehåller formeln och om man vill spara formelns
+    validitet i en variabel result i python, så skriver man:
+
+kodH
+#+BEGIN_SRC python
+result = subprocess.check_output(["python", "simple-sat/src/sat.py", "-ti", string])
+#+END_SRC
+
+    Programmet 3-SAT ger tillbaka en string med info om vad den satisferbara 
+    lösning är, om formeln är satisferbar. Om den inte är satisferbar ges en tom
+    string tillbaka. Eftersom informationen om det är satisferbar eller inte är
+    det enda som är relevant i skapandet av datan så räcker det att kolla om 
+    outputen är tom eller inte. På grund av hur python hanterar strings så finns
+    det två sätt att skriva en tom string : '' och b''. Mer info står i appendix.
+    Funktionen ser då ut i sin helhet som följande:
+
+kodI
+#+BEGIN_SRC python
+  def check(string):
+     """Checks if a formula generated by the generate_formula method,
+     can be satisfied or not.
+     """
+   result = subprocess.check_output(["python", "simple-sat/src/sat.py", "-ti", string])
+   if result == "" or result == b'':
+      return 0
+   else:
+      return 1
+
+#+END_SRC
+
+**** Figurstuff
+     ExempelB, kodG, kodH, appendix sak
 *** Algoritm
 **** Algoritmen på en allmän nivå
      1. Skapa en tom lista för all träningsdata

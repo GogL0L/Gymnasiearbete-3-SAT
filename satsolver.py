@@ -28,10 +28,10 @@ def generate_formula(seed, debug=False):
     """
     digits = seed
     formula = []
-    disjunction_counter  = 0
+    disjunct_counter  = 0
 
     for digit in digits:
-        if disjunction_counter % 3 == 0 and disjunction_counter != 0:
+        if disjunct_counter % 3 == 0 and disjunct_counter != 0:
             formula.append(",")
             formula.append(" ")
         if int(digit)<5 :
