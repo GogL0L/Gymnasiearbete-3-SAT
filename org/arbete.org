@@ -2,9 +2,15 @@
 
 * Anteckningar
   
-** Förklara orden:
+** Förklara orden/förklara:
    Modul, dimension av vektor, vektorkomponent, list (python), parametrar
-   till en funktion (python)
+   till en funktion (python), funktionparameter på följande vis: f(arg1, arg2)
+   Rectifier, Sigmoid, objekt orienterade termer (objekt och metod), softmax, 
+   Stokastiskt gradient nedgång
+   
+** Fixa:
+   Att jag har skrivit numpy.funktion men bör bara konsekvent med np.funktion
+   instället
 
 ** Referenser:
    Att 3-sat är ett NP problem och alla NP problem är ekvivalenta.
@@ -16,11 +22,17 @@
 * Teori
 ** Propositionell logik
 ** Linjär algebra
+*** Vektor
+*** Matris
+*** Matris vektor multiplikation
 ** Deep learning
 *** Bildlig förklaring
 *** Linjär algebra
 *** Flervariabel analys
-** Introduktion till python
+**** Funktioner av flera variabler
+**** Paritalderivata
+**** 
+** Grunderna till python och programering
 * Metod
 ** Skapandet av datan
 *** Krav på datan
@@ -98,6 +110,23 @@
 **** Figurer till parent paragraf:
      exempel3, exempel4, exempel5
 
+*** Simple-Sat
+    Simple-sat är en 3-SAT lösare kodad av Sahand Saba, och används i detta
+    arbete under MIT lisens. Den tar in en input i string format där varje
+    konjuktion är separerad med ett komma och disjuktioner är separerade med 
+    ett mellanslag.Så en variabel kan vara vilken kombination av bokstäver och
+    siffror så länge det inte innehåller ett mellanslag. Det innebär att
+    till skillnad från programspråk som python så kan en enkel siffra vara en
+    unik variabel. Detta är i fördel till omvandlingen i denna metod eftersom
+    varje siffra kodar en viss variabel. För att beteckna negationen används 
+    tecknet tilde (~) framför variabeln utan mellanslag. Betrakta exempelA.
+
+    Problemet med detta program är att det kan endast bli kallad i en terminal.
+    För att ka
+
+**** fig stuff
+     exempelA
+
 *** Algoritm
 **** Algoritmen på en allmän nivå
      1. Skapa en tom lista för all träningsdata
@@ -114,7 +143,7 @@
      12. Repetera steg 3 till 13 där n ökar med ett varje gång, tills n=69999
      13. Exportera datan
 **** Algortimen i python kod
-***** Numpy
+***** Numpy arrays
       För att översätta den allmänna koden till python så skulle det
       tekniskt gå att ha vanliga listor. Men p.g.a att det är så stora
       värden samt att vi vill senare kunna exportera dessa listor, så
@@ -134,7 +163,6 @@
 
 numpy_array = numpy.array([4,2,0])
 #+END_SRC
-
 
 
       Fotnot till kod2: Det är två paranteser p.g.a att man kan sätta in
@@ -164,16 +192,18 @@ numpy_array = numpy.array([4,2,0])
       som uppstår på grund av detta är att första träningsexemplet kommer vara
       på plats två och det andra på plats 3 o.s.v (se figur1). Detta löses dock 
       enkelt genom att ta bort det första elementet i slutet av algoritmen. Man
-      kan göra detta med funktionen numpy.delete. Så steg 1 och två kan
-      översättas till följande kod:
+      kan göra detta med funktionen numpy.delete. En sista detalj är att
+      koden så betecknas input med x och output med y. Notationen är inte för
+      någon speciell anledning, för att det ska bli enklare att skriva
+      variabeln. Så steg 1 och två kan översättas till följande kod:
 
 #+BEGIN_SRC python
-import numpy as np
+  import numpy as np
 
-x_train = np.zeros((1,72))
-y_train = np.array([])
+  x_train = np.zeros((1,72))
+  y_train = np.array([])
 #+END_SRC
-
+***** Loopen steg 3 till 7
       Nästa del i koden är att påbörja loopen från steg 3 till 12. Första steget
       i loopen är att omvandla n till en lista med fem värdesiffror. För det
       första så är det mer korrekt enlight pythons rekomederade stilformat att
@@ -181,15 +211,208 @@ y_train = np.array([])
       i python koden. Omvandlingen av num delades upp i fyra delar. Först
       omvandlades num till en String. Sedan lades det eventuellt på ledande 
       nollor för att få Stringen att ha 5 värdesiffror. Sedan omvandlades den
-      till en vanlig lista, och tillsist en numpy array.
+      till en vanlig lista, och tillsist en numpy array. Steg 1 och 2 blev en rad
+      och steg 3 och 4 blev också en rad. Koden såg ut som följande:
+      
+      kod4
+#+BEGIN_SRC python
+num_string = str(num).zfill(5)
+head_array = np.array(int_list(num_string))
+#+END_SRC
+
+      Steg 5 skrevs på följande vis:
+
+kod5
+#+BEGIN_SRC python
+tail_array = np.random.randint(10, size=67)
+#+END_SRC
+
+      Första argumentet anger då att alla heltal under det givna nummret
+      får slumpmässigt skapas, och size parametern talar om för storleken av
+      arrayen som skapas. 
+
+      För att sedan lägga ihop de två arraysen används np.concatenate.
+
+kod6
+#+BEGIN_SRC python
+array_to_append = np.concatenate((head_array,tail_array))
+#+END_SRC
+
+      Sedan för att lägga till denna array till träningsdatan använder
+      np.concatenate för att updatera x_train.
+
+kod7
+#+BEGIN_SRC python
+x_train = np.concatenate((x_train, [array_to_append]))
+#+END_SRC
+
+      
 ****** Figurer
-       Kod1, Kod2, exempel6, kod3, figur1
+       Kod1, Kod2, exempel6, kod3, figur1, kod4, kod5, kod6, kod7
+
+***** Loppen steg 8 till 11
+     För att se om formeln är satisferbar eller inte används en 3-SAT lösare 
+     programerad av Sahand Saba under MIT licens. Sabas program körs egentligen
+     via terminalen, men den är tillgänglig med modulen satsolver.py som finns
+     beskriven i appendix I. Modulen innehåller två funktioner:
+     satsolver.generate_formula och satsolver.check. Satsolver.generate_formula
+     tar en numpy array och omvandlar den enligt metoden beskriven i omvandling
+     av 3-sat, till en formel satsolver.check kan ta som argument. Satsolver.check
+     ger då värdet noll om formeln är ej satisferbar och värdet ett om 
+     den är satisferbar. Så koden blir som följande:
+     
+kod8
+#+BEGIN_SRC python
+formula = sat.generate_formula(array_to_append)
+value_to_append = sat.check(formula)
+y_train = np.append(y_train, value_to_append)
+#+END_SRC
+
+      Ett steg som inte står beskrivet i den allmänna algortimen, är att 
+      radera det elementet i x_train. Detta var som sagt p.g.a vid skapandet
+      av x_train behövdes ett element fylld av nollor som specifierade storleken
+      på arrayen. Så för att radera det första elementet i x_train används
+      följande kod:
+
+kod9
+#+BEGIN_SRC python
+x_train = np.delete(x_train, 0, 0)
+#+END_SRC
+
+
+
+
+****** Figurer, kod och referatmarkörer
+       Sahanda Saba, referens till omvandling av 3-sat, kod8, kod9
+***** Export av datan
+      För att exportera numpy arrays används funktionen np.save. Funktionen tar
+      in namnet på en filplats och numpy arrayen man vill spara. I detta projekt
+      så sparades filerna i mapp kallad 'data'. Så exporterings koden såg ut som
+      följande:
+      
+#+BEGIN_SRC python
+np.save('data/x_train', x_train)
+np.save('data/y_train', y_train)
+#+END_SRC
+
+****** Kod saker:
+       ko10
+***** Anpassning för utvärderingsdatan
+      Koden för utvärderingsdata är i princip likadan. Enda skillnaden är att
+      num fick variera mellan 60 000 och 69 999 och datan sparades som x_test
+      och y_test för input datan respektive output datan.
 **** Pythonkoden actually
-** Model 1
-** Model 2
-** Träning av datan
+** Skapandet av modellen
+*** Representation av modellen
+    Modellen består alltså av 10 lager med 128 noder var, där Rectifier är 
+    aktiveringsfunktionen. Det finns dessutom ett till lager i slutet som 
+    består av endast en nod och har Sigmoid aktiveringsfunktionen (se figur2).
+*** Tensorflow och Keras
+    För att skapa den här modellen i python används modulerna Tensorflow och 
+    Keras. Tensorflow är en modul som tillåter en att bygga neurala nätverk från 
+    grunden. Keras är en modul som som förenklar byggandet och träningen av 
+    neurala nätverk. I koden kommer dessa moduler och delar modulerna importeras:
+
+kod11
+#+BEGIN_SRC python
+import numpy as np
+from tensorflow import keras
+from tensorflow.keras.layers import Activation, Dense
+#+END_SRC
+
+    För att skapa en tom modell som man sedan kan senare tillägga fler lager till 
+    skriver man:
+
+kod12
+#+BEGIN_SRC python
+model = keras.models.Sequential()  
+#+END_SRC
+
+    Variabeln model blir då ett objekt som symboliserar det neurala nätverket.
+    För tillägg av lager samt träning och utvärdering av modellen används
+    assosierade objekt metoder. För att lägga till ett lager (till höger om
+    man tänker som fig2 där input går in till vänster och output går ut från
+    höger) så använder man objektmetoden add. Som argument tar den vad för
+    sorts lager. Den sortens lager som har hittils gått igenom i texten kallas
+    i keras för 'Dense'. Det är alltså ett lager som kan symboliseras med en 
+    matris, eller noder på rad, samt en associerad aktivationsfunktion. Så för
+    att lägga till ett lager med 128 noder, och Rectifier som aktiveringsfunktionen
+    skriver man:
+
+    kod13
+#+BEGIN_SRC python
+model.add(Dense(128, activation='relu'))  
+#+END_SRC
+
+    relu symbolisera då Recitifier funktionen. Den här raden av kod repeteras
+    då 10 gånger så att det blir totalt tio lager. Sista lagret är två noder
+    där första noden är sannolikheten att det är noll och andra är sannolikheten
+    att det är 1. Detta görs med aktiveringsfunktionen "softmax". Följande kod
+    motsvarar detta lager:
+    
+kod14
+#+BEGIN_SRC python
+model.add(Dense(2, activation='softmax'))
+#+END_SRC
+
+    
+
+
+**** Saker
+     kod11, kod12, figur2, kod13
+** Träning av nätverket
+   För träning av nätverket används "binary cross entropy" som loss funktion,
+   'accuracy' som metric och stokastisk gradient nedgång som optimizer.
+   'Binary crossentropy' och 'accuracy' förklaras ej i detta arbete men dokumentaion
+   om dessa funktioner finns på [ref2]. För att träna nätverket och sedan
+   utvärdera det skrivs följande kod:
+
+kod15
+#+BEGIN_SRC python
+model.compile(optimizer = 'SGD', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=5)
+model.evaluate(x_test, y_test, verbose=2)
+#+END_SRC
+
+   Epochs är hur många gånger den går igenom all data. Så epoch 1 är första
+   gången den går igenom datan epoch 2 andra gången o.s.v. Verbose variabeln 
+   specifierar bara hur mycket information som printas ut. 
+
+*** Stuff ref kod och sånt
+    ref2, kod15
 * Resultat
 ** Model 1
-** Model 2
+   | Epoch | tid        | resultat |
+   |-------+------------+----------|
+   |     1 | 8 sekunder | 50 %     |
+   |     2 | 7 sekunder | 50 %     |
+   |     3 | 7 sekunder | 50 %     |
+   |     4 | 7 sekunder | 50 %     |
+   |     5 | 7 sekunder | 50 %     |
+   
+   Och för träningsdatan var resultatet 50 %.
 * Diskussion och slutsats
 ** Sannolikhet att liknande (och därmed samma) sat formler fanns
+** Presicionen var bara 50% som är lika med en gissning.
+   Som man ser så var resultatet på samtliga delar av utvärderingsprocessen 
+   50 %. Detta tyder med säkerhet att nätverket inte har hittat något mönster
+   då det är lika med chansen för en gissning. Detta stödjer kontentan bland 
+   forskare att P är skiljt från NP (ref3). Eftersom om det finns en tydligt 
+   mönster som neurala nätverk kan se så skulle det öka chansen att det finns 
+   en enklare algortim för 3-SAT problem av allmänn storlek, som är tillräckligt 
+   enkel så att den är i polynomisk tid. Detta utesluter såklart dock inte att
+   neurala nätverk kan tränas att lösa 3-SAT problem. På grund av att koden
+   behövde köras på en persondator, så var antalet lager, noder, epochs, och
+   träningsexempel begränsade till processorkraften och minnet tillgängligt.
+*** Ref och sånt
+    ref3
+** Att man använder neurala nätverk för tydliga mönster och inte resonemang
+** Samtidigt att det finns ingen teori om hur man känner igen människo ansikten
+** Vad innebär att det finns en polynomisk algoritm för 3-sat
+*** Banksystem faller 
+** Vidare forskning
+*** Djupare nätverk
+**** 
+
+* Appendix
+** I

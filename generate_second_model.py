@@ -23,7 +23,7 @@ model.add(Dense(128, activation='relu'))
 model.add(Dense(128, activation='relu'))
 model.add(Dense(128, activation='relu'))
 model.add(Dense(128, activation='relu'))
-model.add(Dense(2, activation='softmax'))
+model.add(Dense(1, activation='sigmoid'))
 
 model.compile(optimizer = 'SGD',
               loss='binary_crossentropy',
