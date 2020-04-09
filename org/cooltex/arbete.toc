@@ -1,0 +1,29 @@
+\babel@toc {swedish}{}
+\contentsline {section}{\numberline {1}Anteckningar}{2}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}F\IeC {\"o}rklara orden:}{2}{subsection.1.1}% 
+\contentsline {subsection}{\numberline {1.2}Referenser:}{2}{subsection.1.2}% 
+\contentsline {section}{\numberline {2}Abstract}{3}{section.2}% 
+\contentsline {section}{\numberline {3}Inledning}{3}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Bakgrund}{3}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Syfte och Fr\IeC {\r a}gest\IeC {\"a}llning}{3}{subsection.3.2}% 
+\contentsline {section}{\numberline {4}Teori}{3}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Propositionell logik}{3}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Linj\IeC {\"a}r algebra}{3}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Deep learning}{3}{subsection.4.3}% 
+\contentsline {subsubsection}{\numberline {4.3.1}Bildlig f\IeC {\"o}rklaring}{3}{subsubsection.4.3.1}% 
+\contentsline {subsubsection}{\numberline {4.3.2}Linj\IeC {\"a}r algebra}{3}{subsubsection.4.3.2}% 
+\contentsline {subsubsection}{\numberline {4.3.3}Flervariabel analys}{3}{subsubsection.4.3.3}% 
+\contentsline {subsection}{\numberline {4.4}Introduktion till python}{3}{subsection.4.4}% 
+\contentsline {section}{\numberline {5}Metod}{3}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}Skapandet av datan}{3}{subsection.5.1}% 
+\contentsline {subsubsection}{\numberline {5.1.1}Krav p\IeC {\r a} datan}{3}{subsubsection.5.1.1}% 
+\contentsline {subsubsection}{\numberline {5.1.2}Omvandling av 3-SAT formler}{4}{subsubsection.5.1.2}% 
+\contentsline {subsubsection}{\numberline {5.1.3}Algoritm}{4}{subsubsection.5.1.3}% 
+\contentsline {subsection}{\numberline {5.2}Model 1}{6}{subsection.5.2}% 
+\contentsline {subsection}{\numberline {5.3}Model 2}{6}{subsection.5.3}% 
+\contentsline {subsection}{\numberline {5.4}Tr\IeC {\"a}ning av datan}{6}{subsection.5.4}% 
+\contentsline {section}{\numberline {6}Resultat}{6}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Model 1}{6}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Model 2}{6}{subsection.6.2}% 
+\contentsline {section}{\numberline {7}Diskussion och slutsats}{6}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Sannolikhet att liknande (och d\IeC {\"a}rmed samma) sat formler fanns}{6}{subsection.7.1}% 

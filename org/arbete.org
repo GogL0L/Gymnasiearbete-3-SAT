@@ -1,9 +1,13 @@
 #+title: Djupinlärning av 3-SAT
 
 * Anteckningar
-
+  
 ** Förklara orden:
-   Modul, dimension av vektor, vektorkomponent
+   Modul, dimension av vektor, vektorkomponent, list (python), parametrar
+   till en funktion (python)
+
+** Referenser:
+   Att 3-sat är ett NP problem och alla NP problem är ekvivalenta.
 
 * Abstract
 * Inledning
@@ -88,10 +92,99 @@
     
     Lösningen på detta är att införa slumpmässiga siffror efter. På detta vis
     kommer alla exempel vara unika, och längden kan anpassas till en multipel
-    av tre. I denna text kommer längder
+    av tre. I denna text kommer längden vara 72 variabler d.v.s fem bestämda
+    siffror och 67 slumpmässiga.
 
 **** Figurer till parent paragraf:
      exempel3, exempel4, exempel5
+
+*** Algoritm
+**** Algoritmen på en allmän nivå
+     1. Skapa en tom lista för all träningsdata
+     2. Skapa en tom lista för all utvärderingsdata
+     3. Låt n = 0
+     4. Omvandla n till en lista med 5 värden
+     5. Skapa en lista med 67 slumpmässiga värden
+     6. Sätt ihop listorna från 2 och 3 till en ny lista
+     7. Lägg till listan från 8 i input träningsdata listan (1)
+     8. Omvandla listan från  8 till en formel
+     9. Kolla om formeln från 10 är satisferbar
+     10. Om den är satiferbar lägg till en etta i output träningsdatan
+     11. Om den inte är det lägg till en nolla i output träningsdatan
+     12. Repetera steg 3 till 13 där n ökar med ett varje gång, tills n=69999
+     13. Exportera datan
+**** Algortimen i python kod
+***** Numpy
+      För att översätta den allmänna koden till python så skulle det
+      tekniskt gå att ha vanliga listor. Men p.g.a att det är så stora
+      värden samt att vi vill senare kunna exportera dessa listor, så
+      är det mer praktiskt att använda en modul som heter Numpy. Listor
+      i numpy heter "numpy arrays". Numpy arrays fungerar i omfattningen
+      av denna text i princip som vanliga lists. Enda skillnaden är att
+      det inte går att direkt modifera dem. Om man vill ändra en variabel
+      som innehåller en numpy array så måste man skapa en ny array baserad 
+      på den gamla och sedan spara den nya i variabeln (betrakta kod1). För 
+      att skapa en numpy array använder man funktionen numpy.array. Som 
+      argument sätter man i en vanlig list som numpy arrayen kommer efterlikna. 
+      Betrakta kod2.
+      
+      kod2 (eller 1?)
+     #+BEGIN_SRC python
+       import numpy
+
+numpy_array = numpy.array([4,2,0])
+#+END_SRC
+
+
+
+      Fotnot till kod2: Det är två paranteser p.g.a att man kan sätta in
+      flera parametrar och de arrays man vill lägga ihop sätter man in
+      i första parametern.
+
+      
+      En sak man måste ta i hänsyn med numpy är att man måste specifiera vid
+      skapandet av en array vad för typ alla element kan vara. Man kan därmed
+      inte ha olika typer. Detta i kontrast till vanliga listor som man kan 
+      ha flera olika typer. Betrakta exempel6 där listan av sig själv fungerar
+      men om man omvandlar till en numpy array skapas det ett felmedelande. 
+      Man kan dock skapa en tom arrray och lägga till värden, så detta är inte
+      ett problem för ouputdatan. Men för input datan så har man en sammling av
+      listor av storleken 72. Om man skulle skapa en tom numpy array 
+      och en numpy array med 72 element och sedan försöka använda numpy.concatenate,
+      visas ett felmedelande. Man är då tvungen att vid skapandet av numpy arrayen
+      för träningsdata redan ha ett element som är en numpy array på storleken 72.
+      Ett enkelt sätt att göra detta är med funktionen numpy.zeros. Numpy.zeros
+      tar in en storlek som argument och skapar en numpy array fylld med nollor
+      med den specifierade storleken. För att skapa en array med 5 nollor skriver
+      man numpy.zeros(5). För att skapa en array fylld med 3 arrays där varje
+      array har 2 nollor skriver man numpy.zeros((3,2)) (se kod3). 
+
+      Eftersom träningsdatan kommer vara en array där varje element är
+      en array på 72 element, så skriver man numpy.zeros((1,72)). Ett problem
+      som uppstår på grund av detta är att första träningsexemplet kommer vara
+      på plats två och det andra på plats 3 o.s.v (se figur1). Detta löses dock 
+      enkelt genom att ta bort det första elementet i slutet av algoritmen. Man
+      kan göra detta med funktionen numpy.delete. Så steg 1 och två kan
+      översättas till följande kod:
+
+#+BEGIN_SRC python
+import numpy as np
+
+x_train = np.zeros((1,72))
+y_train = np.array([])
+#+END_SRC
+
+      Nästa del i koden är att påbörja loopen från steg 3 till 12. Första steget
+      i loopen är att omvandla n till en lista med fem värdesiffror. För det
+      första så är det mer korrekt enlight pythons rekomederade stilformat att
+      ha ord istället för bokstäver som variabler, så n kommer reffereras som num
+      i python koden. Omvandlingen av num delades upp i fyra delar. Först
+      omvandlades num till en String. Sedan lades det eventuellt på ledande 
+      nollor för att få Stringen att ha 5 värdesiffror. Sedan omvandlades den
+      till en vanlig lista, och tillsist en numpy array.
+****** Figurer
+       Kod1, Kod2, exempel6, kod3, figur1
+**** Pythonkoden actually
 ** Model 1
 ** Model 2
 ** Träning av datan
