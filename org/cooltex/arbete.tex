@@ -27,52 +27,74 @@
 \title{Djupinlärning av Neurala nätverk}
 
 \begin{document}
-\
+
 \maketitle
 \tableofcontents
 
 
 \section{Anteckningar}
-\label{sec:org64bdd7c}
+\label{sec:org1d86332}
 
-\subsection{Förklara orden:}
-\label{sec:orgba30a8e}
-Modul, dimension av vektor, vektorkomponent, list (python)
+\subsection{Förklara orden/förklara:}
+\label{sec:org2073c1a}
+Modul, dimension av vektor, vektorkomponent, list (python), parametrar
+till en funktion (python), funktionparameter på följande vis: f(arg1, arg2)
+Rectifier, Sigmoid, objekt orienterade termer (objekt och metod), softmax, 
+Stokastiskt gradient nedgång
+
+\subsection{Fixa:}
+\label{sec:org6ab3374}
+Att jag har skrivit numpy.funktion men bör bara konsekvent med np.funktion
+instället
 
 \subsection{Referenser:}
-\label{sec:org5bb0b9b}
+\label{sec:org6e81812}
 Att 3-sat är ett NP problem och alla NP problem är ekvivalenta.
 
 \section{Abstract}
-\label{sec:org544df08}
+\label{sec:org86ed8d4}
 \section{Inledning}
-\label{sec:orgd2aab77}
+\label{sec:orge571083}
 \subsection{Bakgrund}
-\label{sec:orgdd125d4}
+\label{sec:orgad0db53}
 \subsection{Syfte och Frågeställning}
-\label{sec:org9cf9e5b}
+\label{sec:orgb03441e}
 \section{Teori}
-\label{sec:org13027e6}
+\label{sec:orgc88c63a}
 \subsection{Propositionell logik}
-\label{sec:org438cfeb}
+\label{sec:orgb6f265e}
 \subsection{Linjär algebra}
-\label{sec:org4a4f1a3}
+\label{sec:org9ee1b01}
+\subsubsection{Vektor}
+\label{sec:org9afa89b}
+\subsubsection{Matris}
+\label{sec:org85403bc}
+\subsubsection{Matris vektor multiplikation}
+\label{sec:orgbc85b98}
 \subsection{Deep learning}
-\label{sec:orgb41f60d}
+\label{sec:org7cf406b}
 \subsubsection{Bildlig förklaring}
-\label{sec:org76d3c56}
+\label{sec:org3e22e03}
 \subsubsection{Linjär algebra}
-\label{sec:org2c04fd8}
+\label{sec:org3a4f7ea}
 \subsubsection{Flervariabel analys}
-\label{sec:orga0176f1}
-\subsection{Introduktion till python}
-\label{sec:orge2efa3b}
+\label{sec:org4389528}
+\begin{enumerate}
+\item Funktioner av flera variabler
+\label{sec:org2e40f1e}
+\item Paritalderivata
+\label{sec:orgaed94f5}
+\item 
+\label{sec:org229e890}
+\end{enumerate}
+\subsection{Grunderna till python och programering}
+\label{sec:org0b41e8c}
 \section{Metod}
-\label{sec:orgd8259cc}
+\label{sec:org8bc8527}
 \subsection{Skapandet av datan}
-\label{sec:orgfff88ab}
+\label{sec:orgc85ca46}
 \subsubsection{Krav på datan}
-\label{sec:org9d0a48a}
+\label{sec:org9c9ca05}
 Oavsett hur man bygger upp det neurala nätverket så behövs det
 data med exempel som är redan lösta. I detta arbete är syftet se om
 ett neuralt nätverk kan avgöra om ett 3-SAT problem är satisferbart
@@ -104,12 +126,12 @@ variabler i uttrycket kommer motsvara dimensionen av vektorn.
 
 \begin{enumerate}
 \item Figurer till parent sektion:
-\label{sec:org8a5ca6e}
+\label{sec:org6a13527}
 exempel1, exempel2
 \end{enumerate}
 
 \subsubsection{Omvandling av 3-SAT formler}
-\label{sec:org8d5561b}
+\label{sec:org3afd24f}
 Låt variablerna i en formel ordnas i viss order, exempelvis alfabetsordning
 och sedan stigande i nummer index. Den första variabeln kommer motsvara
 värdet 1, den andra 2, den tredje 3 o.s.v. Sedan när man har kodat för
@@ -143,20 +165,39 @@ siffror och 67 slumpmässiga.
 
 \begin{enumerate}
 \item Figurer till parent paragraf:
-\label{sec:org55f9397}
+\label{sec:orgca6f8d3}
 exempel3, exempel4, exempel5
 \end{enumerate}
 
+\subsubsection{Simple-Sat}
+\label{sec:orga22eb0e}
+Simple-sat är en 3-SAT lösare kodad av Sahand Saba, och används i detta
+arbete under MIT lisens. Den tar in en input i string format där varje
+konjuktion är separerad med ett komma och disjuktioner är separerade med 
+ett mellanslag.Så en variabel kan vara vilken kombination av bokstäver och
+siffror så länge det inte innehåller ett mellanslag. Det innebär att
+till skillnad från programspråk som python så kan en enkel siffra vara en
+unik variabel. Detta är i fördel till omvandlingen i denna metod eftersom
+varje siffra kodar en viss variabel. För att beteckna negationen används 
+tecknet tilde (\textasciitilde{}) framför variabeln utan mellanslag. Betrakta exempelA.
+
+Problemet med detta program är att det kan endast bli kallad i en terminal.
+För att ka
+
+\begin{enumerate}
+\item fig stuff
+\label{sec:org45bc771}
+exempelA
+\end{enumerate}
+
 \subsubsection{Algoritm}
-\label{sec:orgaeb0bc5}
+\label{sec:orgc11c65d}
 \begin{enumerate}
 \item Algoritmen på en allmän nivå
-\label{sec:org9aab57f}
+\label{sec:org5aa3f17}
 \begin{enumerate}
-\item Skapa en tom lista för all input träningsdata
-\item Skapa en tom lista för all input utvärderingsdata
-\item Skapa en tom lista för all output träningsdata
-\item Skapa en tom lista för all output utvärderingsdata
+\item Skapa en tom lista för all träningsdata
+\item Skapa en tom lista för all utvärderingsdata
 \item Låt n = 0
 \item Omvandla n till en lista med 5 värden
 \item Skapa en lista med 67 slumpmässiga värden
@@ -166,14 +207,14 @@ exempel3, exempel4, exempel5
 \item Kolla om formeln från 10 är satisferbar
 \item Om den är satiferbar lägg till en etta i output träningsdatan
 \item Om den inte är det lägg till en nolla i output träningsdatan
-\item Repetera steg 5 till 13 där n ökar med ett varje gång, tills n=69999
-\item Repetera steg 5 till 13 där n ökar med ett varje gång, från 69999 till 70000
+\item Repetera steg 3 till 13 där n ökar med ett varje gång, tills n=69999
+\item Exportera datan
 \end{enumerate}
 \item Algortimen i python kod
-\label{sec:org89108cf}
+\label{sec:orgdd02eb6}
 \begin{enumerate}
-\item Numpy
-\label{sec:orgc10c2ab}
+\item Numpy arrays
+\label{sec:org6fdb3bb}
 För att översätta den allmänna koden till python så skulle det
 tekniskt gå att ha vanliga listor. Men p.g.a att det är så stora
 värden samt att vi vill senare kunna exportera dessa listor, så
@@ -187,6 +228,7 @@ att skapa en numpy array använder man funktionen numpy.array. Som
 argument sätter man i en vanlig list som numpy arrayen kommer efterlikna. 
 Betrakta kod2.
 
+kod2 (eller 1?)
 \begin{verbatim}
        import numpy
 
@@ -194,30 +236,300 @@ numpy_array = numpy.array([4,2,0])
 \end{verbatim}
 
 
+Fotnot till kod2: Det är två paranteser p.g.a att man kan sätta in
+flera parametrar och de arrays man vill lägga ihop sätter man in
+i första parametern.
+
+
+En sak man måste ta i hänsyn med numpy är att man måste specifiera vid
+skapandet av en array vad för typ alla element kan vara. Man kan därmed
+inte ha olika typer. Detta i kontrast till vanliga listor som man kan 
+ha flera olika typer. Betrakta exempel6 där listan av sig själv fungerar
+men om man omvandlar till en numpy array skapas det ett felmedelande. 
+Man kan dock skapa en tom arrray och lägga till värden, så detta är inte
+ett problem för ouputdatan. Men för input datan så har man en sammling av
+listor av storleken 72. Om man skulle skapa en tom numpy array 
+och en numpy array med 72 element och sedan försöka använda numpy.concatenate,
+visas ett felmedelande. Man är då tvungen att vid skapandet av numpy arrayen
+för träningsdata redan ha ett element som är en numpy array på storleken 72.
+Ett enkelt sätt att göra detta är med funktionen numpy.zeros. Numpy.zeros
+tar in en storlek som argument och skapar en numpy array fylld med nollor
+med den specifierade storleken. För att skapa en array med 5 nollor skriver
+man numpy.zeros(5). För att skapa en array fylld med 3 arrays där varje
+array har 2 nollor skriver man numpy.zeros((3,2)) (se kod3). 
+
+Eftersom träningsdatan kommer vara en array där varje element är
+en array på 72 element, så skriver man numpy.zeros((1,72)). Ett problem
+som uppstår på grund av detta är att första träningsexemplet kommer vara
+på plats två och det andra på plats 3 o.s.v (se figur1). Detta löses dock 
+enkelt genom att ta bort det första elementet i slutet av algoritmen. Man
+kan göra detta med funktionen numpy.delete. En sista detalj är att
+koden så betecknas input med x och output med y. Notationen är inte för
+någon speciell anledning, för att det ska bli enklare att skriva
+variabeln. Så steg 1 och två kan översättas till följande kod:
+
+\begin{verbatim}
+import numpy as np
+
+x_train = np.zeros((1,72))
+y_train = np.array([])
+\end{verbatim}
+\item Loopen steg 3 till 7
+\label{sec:orga66736f}
+Nästa del i koden är att påbörja loopen från steg 3 till 12. Första steget
+i loopen är att omvandla n till en lista med fem värdesiffror. För det
+första så är det mer korrekt enlight pythons rekomederade stilformat att
+ha ord istället för bokstäver som variabler, så n kommer reffereras som num
+i python koden. Omvandlingen av num delades upp i fyra delar. Först
+omvandlades num till en String. Sedan lades det eventuellt på ledande 
+nollor för att få Stringen att ha 5 värdesiffror. Sedan omvandlades den
+till en vanlig lista, och tillsist en numpy array. Steg 1 och 2 blev en rad
+och steg 3 och 4 blev också en rad. Koden såg ut som följande:
+
+kod4
+\begin{verbatim}
+num_string = str(num).zfill(5)
+head_array = np.array(int_list(num_string))
+\end{verbatim}
+
+Steg 5 skrevs på följande vis:
+
+kod5
+\begin{verbatim}
+tail_array = np.random.randint(10, size=67)
+\end{verbatim}
+
+Första argumentet anger då att alla heltal under det givna nummret
+får slumpmässigt skapas, och size parametern talar om för storleken av
+arrayen som skapas. 
+
+För att sedan lägga ihop de två arraysen används np.concatenate.
+
+kod6
+\begin{verbatim}
+array_to_append = np.concatenate((head_array,tail_array))
+\end{verbatim}
+
+Sedan för att lägga till denna array till träningsdatan använder
+np.concatenate för att updatera x\textsubscript{train}.
+
+kod7
+\begin{verbatim}
+x_train = np.concatenate((x_train, [array_to_append]))
+\end{verbatim}
+
+
 \begin{enumerate}
 \item Figurer
-\label{sec:org65c33ec}
-Kod1, Kod2
+\label{sec:org3de209f}
+Kod1, Kod2, exempel6, kod3, figur1, kod4, kod5, kod6, kod7
 \end{enumerate}
+
+\item Loppen steg 8 till 11
+\label{sec:org6a1d168}
+För att se om formeln är satisferbar eller inte används en 3-SAT lösare 
+programerad av Sahand Saba under MIT licens. Sabas program körs egentligen
+via terminalen, men den är tillgänglig med modulen satsolver.py som finns
+beskriven i appendix I. Modulen innehåller två funktioner:
+satsolver.generate\textsubscript{formula} och satsolver.check. Satsolver.generate\textsubscript{formula}
+tar en numpy array och omvandlar den enligt metoden beskriven i omvandling
+av 3-sat, till en formel satsolver.check kan ta som argument. Satsolver.check
+ger då värdet noll om formeln är ej satisferbar och värdet ett om 
+den är satisferbar. Så koden blir som följande:
+
+kod8
+\begin{verbatim}
+formula = sat.generate_formula(array_to_append)
+value_to_append = sat.check(formula)
+y_train = np.append(y_train, value_to_append)
+\end{verbatim}
+
+Ett steg som inte står beskrivet i den allmänna algortimen, är att 
+radera det elementet i x\textsubscript{train}. Detta var som sagt p.g.a vid skapandet
+av x\textsubscript{train} behövdes ett element fylld av nollor som specifierade storleken
+på arrayen. Så för att radera det första elementet i x\textsubscript{train} används
+följande kod:
+
+kod9
+\begin{verbatim}
+x_train = np.delete(x_train, 0, 0)
+\end{verbatim}
+
+
+
+
+\begin{enumerate}
+\item Figurer, kod och referatmarkörer
+\label{sec:org4869e8f}
+Sahanda Saba, referens till omvandling av 3-sat, kod8, kod9
+\end{enumerate}
+\item Export av datan
+\label{sec:org480d8f3}
+För att exportera numpy arrays används funktionen np.save. Funktionen tar
+in namnet på en filplats och numpy arrayen man vill spara. I detta projekt
+så sparades filerna i mapp kallad 'data'. Så exporterings koden såg ut som
+följande:
+
+\begin{verbatim}
+np.save('data/x_train', x_train)
+np.save('data/y_train', y_train)
+\end{verbatim}
+
+\begin{enumerate}
+\item Kod saker:
+\label{sec:orgfbf2d4b}
+ko10
+\end{enumerate}
+\item Anpassning för utvärderingsdatan
+\label{sec:org99486c8}
+Koden för utvärderingsdata är i princip likadan. Enda skillnaden är att
+num fick variera mellan 60 000 och 69 999 och datan sparades som x\textsubscript{test}
+och y\textsubscript{test} för input datan respektive output datan.
 \end{enumerate}
 \item Pythonkoden actually
-\label{sec:org8efc0ec}
+\label{sec:org7c02cee}
 \end{enumerate}
-\subsection{Model 1}
-\label{sec:org622a6d5}
-\subsection{Model 2}
-\label{sec:org093bd6c}
-\subsection{Träning av datan}
-\label{sec:org089576d}
-\section{Resultat}
-\label{sec:org5a1c0f0}
-\subsection{Model 1}
-\label{sec:org8338cfa}
-\subsection{Model 2}
-\label{sec:org64a0280}
-\section{Diskussion och slutsats}
-\label{sec:org911f5a3}
-\subsection{Sannolikhet att liknande (och därmed samma) sat formler fanns}
-\label{sec:org459004d}
+\subsection{Skapandet av modellen}
+\label{sec:org664d262}
+\subsubsection{Representation av modellen}
+\label{sec:orgec1d225}
+Modellen består alltså av 10 lager med 128 noder var, där Rectifier är 
+aktiveringsfunktionen. Det finns dessutom ett till lager i slutet som 
+består av endast en nod och har Sigmoid aktiveringsfunktionen (se figur2).
+\subsubsection{Tensorflow och Keras}
+\label{sec:org45977ab}
+För att skapa den här modellen i python används modulerna Tensorflow och 
+Keras. Tensorflow är en modul som tillåter en att bygga neurala nätverk från 
+grunden. Keras är en modul som som förenklar byggandet och träningen av 
+neurala nätverk. I koden kommer dessa moduler och delar modulerna importeras:
 
+kod11
+\begin{verbatim}
+import numpy as np
+from tensorflow import keras
+from tensorflow.keras.layers import Activation, Dense
+\end{verbatim}
+
+För att skapa en tom modell som man sedan kan senare tillägga fler lager till 
+skriver man:
+
+kod12
+\begin{verbatim}
+model = keras.models.Sequential()  
+\end{verbatim}
+
+Variabeln model blir då ett objekt som symboliserar det neurala nätverket.
+För tillägg av lager samt träning och utvärdering av modellen används
+assosierade objekt metoder. För att lägga till ett lager (till höger om
+man tänker som fig2 där input går in till vänster och output går ut från
+höger) så använder man objektmetoden add. Som argument tar den vad för
+sorts lager. Den sortens lager som har hittils gått igenom i texten kallas
+i keras för 'Dense'. Det är alltså ett lager som kan symboliseras med en 
+matris, eller noder på rad, samt en associerad aktivationsfunktion. Så för
+att lägga till ett lager med 128 noder, och Rectifier som aktiveringsfunktionen
+skriver man:
+
+kod13
+\begin{verbatim}
+model.add(Dense(128, activation='relu'))  
+\end{verbatim}
+
+relu symbolisera då Recitifier funktionen. Den här raden av kod repeteras
+då 10 gånger så att det blir totalt tio lager. Sista lagret är två noder
+där första noden är sannolikheten att det är noll och andra är sannolikheten
+att det är 1. Detta görs med aktiveringsfunktionen "softmax". Följande kod
+motsvarar detta lager:
+
+kod14
+\begin{verbatim}
+model.add(Dense(2, activation='softmax'))
+\end{verbatim}
+
+
+
+
+\begin{enumerate}
+\item Saker
+\label{sec:org7033c50}
+kod11, kod12, figur2, kod13
+\end{enumerate}
+\subsection{Träning av nätverket}
+\label{sec:org6824ed3}
+För träning av nätverket används "binary cross entropy" som loss funktion,
+'accuracy' som metric och stokastisk gradient nedgång som optimizer.
+'Binary crossentropy' och 'accuracy' förklaras ej i detta arbete men dokumentaion
+om dessa funktioner finns på [ref2]. För att träna nätverket och sedan
+utvärdera det skrivs följande kod:
+
+kod15
+\begin{verbatim}
+model.compile(optimizer = 'SGD', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=5)
+model.evaluate(x_test, y_test, verbose=2)
+\end{verbatim}
+
+Epochs är hur många gånger den går igenom all data. Så epoch 1 är första
+gången den går igenom datan epoch 2 andra gången o.s.v. Verbose variabeln 
+specifierar bara hur mycket information som printas ut. 
+
+\subsubsection{Stuff ref kod och sånt}
+\label{sec:org139c741}
+ref2, kod15
+\section{Resultat}
+\label{sec:orged1fe25}
+\subsection{Model 1}
+\label{sec:orgb7cc8ed}
+\begin{center}
+\begin{tabular}{rll}
+Epoch & tid & resultat\\
+\hline
+1 & 8 sekunder & 50 \%\\
+2 & 7 sekunder & 50 \%\\
+3 & 7 sekunder & 50 \%\\
+4 & 7 sekunder & 50 \%\\
+5 & 7 sekunder & 50 \%\\
+\end{tabular}
+\end{center}
+
+Och för träningsdatan var resultatet 50 \%.
+\section{Diskussion och slutsats}
+\label{sec:orgb4193fa}
+\subsection{Sannolikhet att liknande (och därmed samma) sat formler fanns}
+\label{sec:org867bd73}
+\subsection{Presicionen var bara 50\% som är lika med en gissning.}
+\label{sec:orgf3746df}
+Som man ser så var resultatet på samtliga delar av utvärderingsprocessen 
+50 \%. Detta tyder med säkerhet att nätverket inte har hittat något mönster
+då det är lika med chansen för en gissning. Detta stödjer kontentan bland 
+forskare att P är skiljt från NP (ref3). Eftersom om det finns en tydligt 
+mönster som neurala nätverk kan se så skulle det öka chansen att det finns 
+en enklare algortim för 3-SAT problem av allmänn storlek, som är tillräckligt 
+enkel så att den är i polynomisk tid. Detta utesluter såklart dock inte att
+neurala nätverk kan tränas att lösa 3-SAT problem. På grund av att koden
+behövde köras på en persondator, så var antalet lager, noder, epochs, och
+träningsexempel begränsade till processorkraften och minnet tillgängligt.
+\subsubsection{Ref och sånt}
+\label{sec:org1360f91}
+ref3
+\subsection{Att man använder neurala nätverk för tydliga mönster och inte resonemang}
+\label{sec:orgb1fc944}
+\subsection{Samtidigt att det finns ingen teori om hur man känner igen människo ansikten}
+\label{sec:org03ab628}
+\subsection{Vad innebär att det finns en polynomisk algoritm för 3-sat}
+\label{sec:orgcbb362b}
+\subsubsection{Banksystem faller}
+\label{sec:org1de9b67}
+\subsection{Vidare forskning}
+\label{sec:org5c7f9cb}
+\subsubsection{Djupare nätverk}
+\label{sec:org67fe8f8}
+\begin{enumerate}
+\item 
+\label{sec:orgdaaa714}
+\end{enumerate}
+
+\section{Appendix}
+\label{sec:org43bc716}
+\subsection{I}
+\label{sec:org97024b7}
 \end{document}

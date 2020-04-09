@@ -121,11 +121,50 @@
     varje siffra kodar en viss variabel. För att beteckna negationen används 
     tecknet tilde (~) framför variabeln utan mellanslag. Betrakta exempelA.
 
-    Problemet med detta program är att det kan endast bli kallad i en terminal.
-    För att ka
+    Problemet med detta program är att det kan endast bli tillkallad i en terminal.
+    En terminal är ett helt textbaserat program som man kan skriva in kommandon
+    till för att starta olika program. De främsta operativsystemen är egentligen
+    en terminal som kör i bakgrunden och det grafiska användargränsnitt
+    man har tillgänglig är ett program som körs genom terminalen. Om man använder
+    windows så heter terminalprogrammet "CMD", på Ubuntu heter (den som ingår)
+    bash. 3-SAT programmet är gjort för terminaler under operativsystem Linux.
+    Så två problem måste lösas. Det första problemet är att omvandla en string av 
+    siffror till en formel som 3-SAT programet kan tolka. Det andra problemet
+    är hur man ska kunna intargera med detta program genom python, då programet
+    är gjord för att användas i en terminal i linux.
+
+    
+    
+    För att få tillgång
+    till att skicka kommandon till terminalen via python använder man modulen
+    subprocess. För subprocess.check_output tar in som argument ett terminal
+    kommando ger tillbaka resultatet av vad som skrevs i terminalen.
+
 
 **** fig stuff
      exempelA
+
+*** Omvandling till formel
+    För att omvandla en string av siffror till en string i det format 3-SAT
+    programmet tar emot definerar vi funktionen generate_formula. Generate
+    formula tar argumentet *seed* som är stringen av siffror. Funktionen inleds
+    med att definera två variabler.
+
+kodA
+#+BEGIN_SRC python
+digits = seed
+formula = []
+disjunction_counter  = 0
+#+END_SRC
+
+    Seed döps om av den enkla anledningen att det kommer hjälpa med tydlighet
+    i en loop som kommer senare. Formula variabeln är där alla tecken till
+    formeln kommer läggas till. Vid slutet av programmet kommer elementen i 
+    formula sättas ihop till formel stringen, men eftersom man har mer 
+    kontroll med listor, defineras den som en tom lista i början.
+
+**** Figurer och sånt
+     kodA
 
 *** Algoritm
 **** Algoritmen på en allmän nivå
