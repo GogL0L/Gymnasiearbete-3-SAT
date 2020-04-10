@@ -19,6 +19,21 @@
    Att 3-sat är ett NP problem och alla NP problem är ekvivalenta.
 
 * Abstract
+  Many important problems such as protein folding, circuit design
+  and breaking RSA encryption all fall under the complexity class NP. For
+  many of these problems, the finding of a polynomial time algorithm would
+  be greatly appreciated. Better circuit design would improve computing speed
+  and faster protein folding could lead to a cure for cancer. But for problems
+  such breaking RSA encryption a polynomial time algorithm would not be as much
+  appreciated as it would cause online banking to be easily hacked. If a
+  polynomial time algorithm would be found to the 3-SAT problem it would also
+  apply to all problems in the complexity class NP. A polynomial algorithm
+  to 3-SAT, or simply a proof of the existence or non-existence of one is yet
+  to be found. Although advances in machine self-learning with the use of neural
+  networks has lately shown much succes. Many advanced games such as Go and DOTA
+  can self taught AIs outperform. In this paper, neural networks are trained
+  to solve fixed variable lenght 3-SAT problems in order to see what the results
+  sugest regarding the finding of a polynomial time algorithm.
 * Inledning
 ** Bakgrund
 ** Syfte och Frågeställning
@@ -93,7 +108,7 @@ print ("9+10")
 
       Resultatet av ovanstående kod blir då "9+10" tillskillnad från koden innan.
       Värden kan sparas i variabler.
-
+kodkolla
 #+BEGIN_SRC python
 nummer = 2+2
 text = "10+20+30"
@@ -101,6 +116,9 @@ text = "10+20+30"
 print(nummer)
 print(text) 
 #+END_SRC
+
+      
+
 
 
 *** figstuff

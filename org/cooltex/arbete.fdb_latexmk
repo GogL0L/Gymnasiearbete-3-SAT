@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1586449729 "arbete.tex" "arbete.pdf" "arbete" 1586449729
+["pdflatex"] 1586470573 "arbete.tex" "arbete.pdf" "arbete" 1586470573
   "/etc/texmf/web2c/texmf.cnf" 1581157653 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/john/texmf/tex/generic/babel-swedish/swedish.ldf" 1367879024 6735 652c52aa65209178f7b583989d4d9902 ""
   "/home/john/texmf/tex/latex/amsmath/amsbsy.sty" 1523134290 2211 ca7ce284ab93c8eecdc6029dc5ccbd73 ""
@@ -76,13 +76,13 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1562720991 35073 2a40cfca74fcd5e2568b569ccaadf3f1 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1581157666 75955 f78456fd1308dc295dc476a68e28d85b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1581157668 797298 f8045577aa7eea9a046b9eaafabf0d27 ""
-  "arbete.aux" 1586378574 6597 a9abda5636975bd61b7c57333018acb4 "pdflatex"
-  "arbete.out" 1586378574 1803 5c3ffe459a54d9cf15cbb89561862535 "pdflatex"
+  "arbete.aux" 1586449730 11209 b14fd0a70d15096d39309393d578982a "pdflatex"
+  "arbete.out" 1586449730 3212 f3df4576d512fad8d21c10e56dcade0f "pdflatex"
   "arbete.tex" 1586449728 20891 0ea02e944e931b859bed55bd71eab243 ""
-  "arbete.toc" 1586378574 2393 b9ee5c20f5516e7d54bc04675a7d79d3 "pdflatex"
+  "arbete.toc" 1586449730 4176 1acea15b0339b2fce4be899e7b055101 "pdflatex"
   (generated)
-  "arbete.pdf"
   "arbete.aux"
+  "arbete.pdf"
+  "arbete.log"
   "arbete.out"
   "arbete.toc"
-  "arbete.log"
