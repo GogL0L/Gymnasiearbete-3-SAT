@@ -24,19 +24,53 @@
   many of these problems, the finding of a polynomial time algorithm would
   be greatly appreciated. Better circuit design would improve computing speed
   and faster protein folding could lead to a cure for cancer. But for problems
-  such breaking RSA encryption a polynomial time algorithm would not be as much
-  appreciated as it would cause online banking to be easily hacked. If a
+  such breaking RSA encryption, a polynomial time algorithm would not be as much
+  appreciated as it would cause online banking to easily be hacked. If a
   polynomial time algorithm would be found to the 3-SAT problem it would also
-  apply to all problems in the complexity class NP. A polynomial algorithm
+  apply to all problems in the complexity class NP. A polynomial time algorithm
   to 3-SAT, or simply a proof of the existence or non-existence of one is yet
-  to be found. Although advances in machine self-learning with the use of neural
-  networks has lately shown much succes. Many advanced games such as Go and DOTA
-  can self taught AIs outperform. In this paper, neural networks are trained
-  to solve fixed variable lenght 3-SAT problems in order to see what the results
-  sugest regarding the finding of a polynomial time algorithm.
+  to be found. Recently, advances in machine self-learning with the use of neural
+  networks has lately shown much succes. Self taught AIs can now outperform 
+  humans in many advanced games such as DOTA and Go. In this paper, 
+  neural networks are trained to solve 3-SAT problems with fixed variable length
+  in order to see what the results sugests regarding the finding of a 
+  polynomial time algorithm.
 * Inledning
-** Bakgrund
+    Många problem som datorer försöker lösa kan delas upp i två klasser: P och NP.
+    P kan anses som problem som kan lösas "snabbt" ("snabbt" defineras i teori). 
+    Problem som faller under
+    denna kategori är exempelvis multiplikation och att sortera namn i
+    alfabetsordning. Om man definerar P som problem som kan lösas "snabbt" så är
+    NP problem som man kan kontrolera om ett svar är korrrekt "snabbt". Ett 
+    exempel
+    på detta är att primtals faktorisera. Om jag skulle fråga dig, läsaren att
+    hitta delare till talet 2231 med endast penna och papper så skulle det nog
+    tag ganska lång tid. Den enda metod du skulle ha förutom att använda
+    delbarhetstester är att kolla varenda nummer lägre än 2231 och testa att 
+    dela. Men om jag istället bad dig att kolla om svaret är 23 och 97 så 
+    skulle det bli enklare. Då kan du helt enkelt ställa upp 23 gånger 97 
+    och se om det blir 2231. Problemet anses vara i NP för att svaret kunde
+    kontroleras "snabbt".
+    
+
+    I klassen NP så finns det en delmängd problem som kallas NP-fullständiga.
+    NP-fullständiga problem är problem vars lösningsalgoritm kan användas för
+    varenda problem i hela klassen NP. D.v.s det räcker att du hittar en "snabb"
+    lösning för ett problem som är NP-komplett och då kan du lösa varenda problem
+    i NP snabbt. Ett problem som faller under klassen NP-fullständiga problem är
+    3-SAT, som är enkel att formulera matematisk då det inte primärt grundar
+    sig på ett problem i verkligheten.
+    
+    
 ** Syfte och Frågeställning
+   I detta arbete beskrivs skapandet av data som innehåller lösta 3-SAT problem 
+   som kan användas för träningen av ett neuralt nätverk. Sedan beskrivs 
+   konstruktionen av modellen för det neurala nätverket samt träningen av det
+   nätverket med hjälp av den skapade datan. Syftet med denna uppgift är att 
+   utforska frågan om hur bra neurala nätverk kan lösa 3-SAT problem för att
+   nyansera frågan om en algoritm som löser 3-SAT i polynomisk tid är möjlig.
+   Texten har också i syfte att undervisa om hur python fungerar i samband
+   av matematiska undersökningar. 
 * Teori
 ** Propositionell logik
 ** Linjär algebra
@@ -45,6 +79,16 @@
 *** Matris vektor multiplikation
 ** Deep learning
 *** Bildlig förklaring
+    Ett neuralt nätverk är trots dess komplex struktur i grunden en funktion.
+    Det tar in data och och ger ut ett svar. Det som gör det speciellt
+    är att man har efterliknat modellen till hur hjärnan fungerar,
+    och den är gjord att lära sig på samma sätt männsikor lär sig:genom att
+    träna sig igenom exempel. Nätverket består av noder som är ordnade i lager.
+    Varenda nod i det vänstra lagret är kopplad till varenda nod i lagret
+    till höger om sig, som i sig förhåller sig likadant till lagret till höger om sig
+    (se figstuff). 
+
+    Om man kollar i detalj på en nod så ser man att varje 
 *** Linjär algebra
 *** Flervariabel analys
 **** Funktioner av flera variabler
@@ -74,9 +118,11 @@
     Tillskillnad från matematik, där funktioner betecknas med enstaka bokstäver,
     så betecknas funktioner i programmering med ord eller mindre
     meningar där varje ord är separerad med understreck. Den mest fundementala
-    och viktigaste funktionen vid lärning av python är funktionen "print". 
+    och viktigaste funktionen vid lärning av  grunderna i python är funktionen "print". 
     Funktionen talar om för tolkprogrammet att visa dess argument. Betrakta
     följande kod:
+
+   
     
 #+BEGIN_SRC python
 print(5) 
@@ -110,19 +156,211 @@ print ("9+10")
       Värden kan sparas i variabler.
 kodkolla
 #+BEGIN_SRC python
-nummer = 2+2
-text = "10+20+30"
+  number = 2+2
+  text = "10+20+30"
 
-print(nummer)
-print(text) 
+  print(number)
+  print(text) 
 #+END_SRC
 
+      Eftersom python kan krångla om man använder de svenska bokstäverna
+      'åäö', så kommer kod i fortsättningen skrivas på engelska. Till varje
+      variabel finns det en associerad typ. Variabeln number i det tidigare
+      exemplet har typen int, förkortning för ordet integer, d.v.s typen
+      för heltal. Variabeln text har typen str, förkortning för string, 
+      för att syfta på att det är en sträng symboler som tolkas bokstavligt.
+      Det är viktigt om man ska t.ex. plusa ihop två variabler, att de är
+      av samma typ.
+
+#+BEGIN_SRC python
+number = 10
+text = "10"
+
+print(text + text)
+#+END_SRC
+
+      Ovanstående kod ger ett felmedelande då python ser text variabeln
+      som en sammling symboler och vet inte hur man lägger ihop dem med ett
+      nummer. Det är dessutom viktigt att förstå att fast det är ett likamed
+      tecken så ska man tolka det mer som att det som är på högersida läggs
+      in på vänster sida. Om man väl har samma typ så har operationen plus
+      olika betydelse.
+
+#+BEGIN_SRC python
+number = 10
+text = "10"
+
+print (number + number)
+print (text + text) 
+#+END_SRC
+
+      Som man ser så utförs den matematiska operationen plus då variablerna 
+      är av type int. Om de är av typen str så läggs de symbolerna ihop.
+
+
+#+BEGIN_SRC python
+x = 5
+x = x + 10 
+print (x)
+#+END_SRC
+
+      Den andra raden ser ut som ett felaktigt matematisk uttryck. Men det som
+      sker är att första raden läses och python lägger in värdet 5 i variabeln x.
+      Sedan läses andra raden och x + 10 räknas ut och sedan läggs det nya 
+      värdet in i x. 
+*** Funktioner och loops
+      Som sagt så kan funktioner i python fungera som vanliga matematiska funktioner.
+      Om man vill programmera funktionen
+
+#+BEGIN_SRC latex
+\[
+f(x) =  3x^2 + 4x + 5 
+\]
+#+END_SRC
+
+      så skriver man
+
+#+BEGIN_SRC python
+def f(x):
+  return 3 * x**2  +  4 * x  + 5
+
+value = f(5)
+print (value)
+#+END_SRC
+
+      En stjärna betyder då multiplikation och två stjärnor betyder upphöjt.
+      Men som det har tidigare nämnts så kan funktioner i python utföra 
+      moment. Om man vill visa texten "Hello world" och sedan resultatet av
+      2+2 på skärmen, så kan man definera funktionen
+
+#+BEGIN_SRC python
+def f():
+  print ("Hello world")
+  print (2+2) 
+#+END_SRC
+
+      Som man ser i ovanstående kod så behöver funktionen inte ta
+      några variabler som argument tillskillnad från riktiga variabler. 
+      Man behövde dessutom inte skriva return då denna funktion enbart
+      utförde något och inte gav tillbaka ett värde. En annan viktig observation
+      är att alla instruktioner som tillhör funktionen är indenterade.
+
+      Som det har tidigare 
+      nämnts så är det mer korrekt enligt stilguiden att namge funktioner
+      och variabler som ord eller meningar separerade med understreck. Så 
+      funktionen $f$ skulle kunna namnges som
+     
+#+BEGIN_SRC python
+def do_something():
+  print ("Hello world")
+  print (2+2)
+#+END_SRC
+
+       vilket är mer korrekt, även om de gör exakt samma sak.
+       Om man vill repetera någonting så kan man skriva som följande. Dock om
+       man skulle köra denna kod så skulle inget ske. Detta är p.g.a att 
+       koden endast förklarar vad funktionen do_something gör men utför aldrig
+       den. För att utföra den så måste man skriva ut funktionen på en rad.
+       
+#+BEGIN_SRC python
+def do_something():
+  print ("Hello world")
+  print (2+2)
+
+do_something() 
+#+END_SRC
+
+
+        För att repetera någonting skriver man som följande.
+
+#+BEGIN_SRC python
+for number in range(0,4):
+  print(number) 
+#+END_SRC
+
+      Observera att variabeln number börjar på 0 går sedan igenom alla heltal 
+      lägre än fyra, men aldrig fyra i sig själv. 
+
+*** Moduler och något om objekt
+    
+    Många användbara funktioner som är svåra att
+    programmera har redan blivit kodade. Många av dessa
+    finns tillgängliga till allmänheten genom moduler. En modul är
+    en sammling funktioner och variabler man kan enkelt
+    importera i sin egen kod. Antag att det finns en modul 
+    som heter Volumecontrols och har funktionen mute_volume. Givet att man 
+    har instalerat modulen på sitt system så kan man importera modulen och 
+    använda funktionen genom att skriva:
+
+#+BEGIN_SRC python
+import Volumecontrols
+
+Volumecontrols.mute_volume() 
+#+END_SRC
+
+    Man skriver alltså modulens namn och ett punkttecken och sedan namnet på
+    funktionen. Men det kan bli jobbigt att jämnt skriva modulnamnet "Volumecontrols"
+    jämnt så då kan man importera modulen med ett smeknamn genom:
+
+#+BEGIN_SRC python
+import Volumecontrols as vc
+
+vc.mute_volume() 
+#+END_SRC
+
+     Många moduler används med objekt orienterad programmering. Objekt orienterad
+     programmering är användingen av objekt. Ett objekt är en variabel som har
+     associerade funktioner och värden. Dessa funktioner, och värden
+     kan nås (likt moduler) genom att skriva namnet på objektet sedan ett 
+     punkttecken, och sist namnet på värdet eller funktionen. Ett objekt skapas 
+     genom att skriva namnet man vill ge på objektet på vänster sida av ett 
+     likhetstecken och sedan en funktion som skapar objekt på höger sida.
+     
+#+BEGIN_SRC python
+name_of_object = object_creating_method() 
+#+END_SRC
+
+     Så om man fortsätter på exemplet med låtsas modulen Volumecontrols
+     så kan man tänka sig att Volumecontrols kan skapa objekt för olika enheter
+     som kan spela ljud i hemmet, t.ex sin tv eller dator. Och om man har
+     objeketet my_tv så kan man t.ex öka ljudet på sin tv med funktionen
+     my_tv.increase_volume(), och så kan man se vilken nivå på ljudet med
+     my_tv.volume. Så om man vill skriva ett program som visar volymen på
+     sin tv och sedan ökar den kan se ut som följande.
+
+#+BEGIN_SRC python
+import Volumecontrols as vc
+my_tv = vc.create_object(96896)
+print (my_tv.volume)
+my_tv.increase.volume() 
+#+END_SRC
+
+      Så den första raden är importeringen av modulen. I den andra raden
+      skapas objektet. I detta exempel så tar funktionen som skapar objektet
+      ett nummer. Detta symbolisera någon sorts ID på sin tv, så
+      my_tv blir just den TV man syftar på. På tredje raden visas volymen my_tv
+      har och på fjärde raden ökas volymen på my_tv.
       
+      Ett exempel på en typ som har objekt funktioner är list. En list är vad
+      som det låter, en lista. En lista omringas av hakparanteser och elementen
+      seprareras av kommatecken. Så om man vill en lista där första elementet
+      är en siffran 9, andra är siffran 8, och tredje 7 så skriver man som följande
 
+#+BEGIN_SRC python
+my_list = [9,8,7] 
+#+END_SRC
 
+      Om man vill lägga till ett element kan man använda objektmetoden append.
+
+#+BEGIN_SRC python
+my_list = [9,8,7]
+my_list.append(5)
+print(my_list) 
+#+END_SRC
 
 *** figstuff
     refA
+
 * Metod
 ** Skapandet av datan
 *** Krav på datan
