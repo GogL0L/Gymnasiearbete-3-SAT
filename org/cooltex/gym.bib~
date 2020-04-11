@@ -1,0 +1,54 @@
+@inproceedings{cooknp,
+author = {Cook, Stephen A.},
+title = {The Complexity of Theorem-Proving Procedures},
+year = {1971},
+isbn = {9781450374644},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/800157.805047},
+doi = {10.1145/800157.805047},
+booktitle = {Proceedings of the Third Annual ACM Symposium on Theory of Computing},
+pages = {151–158},
+numpages = {8},
+location = {Shaker Heights, Ohio, USA},
+series = {STOC ’71}
+}
+
+@article{roy,
+  title={Linj{\"a}r algebra},
+  author={Skjelnes, Roy}
+  url = {https://www.kth.se/polopoly_fs/1.591293.1550157526!/LinearAlgebra-2015.pdf}
+  year = {2015}
+}
+
+@book{headmanlogic,
+  title={A First Course in Logic: An introduction to model theory, proof theory, computability, and complexity},
+  author={Hedman, Shawn},
+  year={2004},
+  publisher={Oxford University Press Oxford}
+}
+
+@article{sudoku,
+  title={Complexity and completeness of finding another solution and its application to puzzles},
+  author={Yato, Takayuki and Seta, Takahiro},
+  journal={IEICE transactions on fundamentals of electronics, communications and computer sciences},
+  volume={86},
+  number={5},
+  pages={1052--1060},
+  year={2003},
+  publisher={The Institute of Electronics, Information and Communication Engineers}
+}
+
+@article{cython,
+  title={Gradvis typat Python med Cython},
+  author={Gustafsson, Fredrik and Holmberg, Viktor},
+  year={2011}
+}
+
+@inproceedings{pnpopinion,
+  title={The history and status of the P versus NP question},
+  author={Sipser, Michael},
+  booktitle={Proceedings of the twenty-fourth annual ACM symposium on Theory of computing},
+  pages={603--618},
+  year={1992}
+}

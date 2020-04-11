@@ -1,45 +1,78 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {swedish}{}
-\contentsline {section}{\numberline {1}Anteckningar}{2}{section.1}% 
-\contentsline {subsection}{\numberline {1.1}F\IeC {\"o}rklara orden/f\IeC {\"o}rklara:}{2}{subsection.1.1}% 
-\contentsline {subsection}{\numberline {1.2}Fixa:}{2}{subsection.1.2}% 
-\contentsline {subsection}{\numberline {1.3}Referenser:}{2}{subsection.1.3}% 
-\contentsline {section}{\numberline {2}Abstract}{3}{section.2}% 
-\contentsline {section}{\numberline {3}Inledning}{3}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Bakgrund}{3}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Syfte och Fr\IeC {\r a}gest\IeC {\"a}llning}{3}{subsection.3.2}% 
-\contentsline {section}{\numberline {4}Teori}{3}{section.4}% 
-\contentsline {subsection}{\numberline {4.1}Propositionell logik}{3}{subsection.4.1}% 
-\contentsline {subsection}{\numberline {4.2}Linj\IeC {\"a}r algebra}{3}{subsection.4.2}% 
-\contentsline {subsubsection}{\numberline {4.2.1}Vektor}{3}{subsubsection.4.2.1}% 
-\contentsline {subsubsection}{\numberline {4.2.2}Matris}{3}{subsubsection.4.2.2}% 
-\contentsline {subsubsection}{\numberline {4.2.3}Matris vektor multiplikation}{3}{subsubsection.4.2.3}% 
-\contentsline {subsection}{\numberline {4.3}Deep learning}{3}{subsection.4.3}% 
-\contentsline {subsubsection}{\numberline {4.3.1}Bildlig f\IeC {\"o}rklaring}{3}{subsubsection.4.3.1}% 
-\contentsline {subsubsection}{\numberline {4.3.2}Linj\IeC {\"a}r algebra}{3}{subsubsection.4.3.2}% 
-\contentsline {subsubsection}{\numberline {4.3.3}Flervariabel analys}{3}{subsubsection.4.3.3}% 
-\contentsline {subsection}{\numberline {4.4}Grunderna till python och programering}{3}{subsection.4.4}% 
-\contentsline {section}{\numberline {5}Metod}{3}{section.5}% 
-\contentsline {subsection}{\numberline {5.1}Skapandet av datan}{3}{subsection.5.1}% 
-\contentsline {subsubsection}{\numberline {5.1.1}Krav p\IeC {\r a} datan}{3}{subsubsection.5.1.1}% 
-\contentsline {subsubsection}{\numberline {5.1.2}Omvandling av 3-SAT formler}{4}{subsubsection.5.1.2}% 
-\contentsline {subsubsection}{\numberline {5.1.3}Simple-Sat}{5}{subsubsection.5.1.3}% 
-\contentsline {subsubsection}{\numberline {5.1.4}Algoritm}{5}{subsubsection.5.1.4}% 
-\contentsline {subsection}{\numberline {5.2}Skapandet av modellen}{8}{subsection.5.2}% 
-\contentsline {subsubsection}{\numberline {5.2.1}Representation av modellen}{8}{subsubsection.5.2.1}% 
-\contentsline {subsubsection}{\numberline {5.2.2}Tensorflow och Keras}{8}{subsubsection.5.2.2}% 
-\contentsline {subsection}{\numberline {5.3}Tr\IeC {\"a}ning av n\IeC {\"a}tverket}{9}{subsection.5.3}% 
-\contentsline {subsubsection}{\numberline {5.3.1}Stuff ref kod och s\IeC {\r a}nt}{9}{subsubsection.5.3.1}% 
-\contentsline {section}{\numberline {6}Resultat}{10}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Model 1}{10}{subsection.6.1}% 
-\contentsline {section}{\numberline {7}Diskussion och slutsats}{10}{section.7}% 
-\contentsline {subsection}{\numberline {7.1}Sannolikhet att liknande (och d\IeC {\"a}rmed samma) sat formler fanns}{10}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7.2}Presicionen var bara 50\% som \IeC {\"a}r lika med en gissning.}{10}{subsection.7.2}% 
-\contentsline {subsubsection}{\numberline {7.2.1}Ref och s\IeC {\r a}nt}{10}{subsubsection.7.2.1}% 
-\contentsline {subsection}{\numberline {7.3}Att man anv\IeC {\"a}nder neurala n\IeC {\"a}tverk f\IeC {\"o}r tydliga m\IeC {\"o}nster och inte resonemang}{10}{subsection.7.3}% 
-\contentsline {subsection}{\numberline {7.4}Samtidigt att det finns ingen teori om hur man k\IeC {\"a}nner igen m\IeC {\"a}nnisko ansikten}{10}{subsection.7.4}% 
-\contentsline {subsection}{\numberline {7.5}Vad inneb\IeC {\"a}r att det finns en polynomisk algoritm f\IeC {\"o}r 3-sat}{10}{subsection.7.5}% 
-\contentsline {subsubsection}{\numberline {7.5.1}Banksystem faller}{10}{subsubsection.7.5.1}% 
-\contentsline {subsection}{\numberline {7.6}Vidare forskning}{10}{subsection.7.6}% 
-\contentsline {subsubsection}{\numberline {7.6.1}Djupare n\IeC {\"a}tverk}{10}{subsubsection.7.6.1}% 
-\contentsline {section}{\numberline {8}Appendix}{11}{section.8}% 
-\contentsline {subsection}{\numberline {8.1}I}{11}{subsection.8.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Inledning}{4}{section.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1}Syfte och Fr\IeC {\r a}gest\IeC {\"a}llning}{4}{subsection.1.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Teori}{4}{section.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1}Polynomisk tid}{4}{subsection.2.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2}Propositionell logik}{5}{subsection.2.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3}3-SAT}{6}{subsection.2.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4}Linj\IeC {\"a}r algebra}{6}{subsection.2.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.4.1}Vektorer}{6}{subsubsection.2.4.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.4.2}Matriser}{7}{subsubsection.2.4.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5}Neurala n\IeC {\"a}tverk}{8}{subsection.2.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.5.1}Bildlig f\IeC {\"o}rklaring}{8}{subsubsection.2.5.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6}Formell definition}{10}{subsection.2.6}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.7}Grunderna till python och programering}{11}{subsection.2.7}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.7.1}Programmering}{11}{subsubsection.2.7.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.7.2}Python}{11}{subsubsection.2.7.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.7.3}Funktioner och loops}{13}{subsubsection.2.7.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.7.4}Moduler och n\IeC {\r a}got om objekt}{14}{subsubsection.2.7.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Metod}{16}{section.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Skapandet av datan}{16}{subsection.3.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1}Krav p\IeC {\r a} datan}{16}{subsubsection.3.1.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2}Omvandling av 3-SAT formler}{17}{subsubsection.3.1.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.3}Simple-Sat}{18}{subsubsection.3.1.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.4}Omvandling till formel}{18}{subsubsection.3.1.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.5}Satisferbarhet av formeln}{20}{subsubsection.3.1.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2}Algoritmen f\IeC {\"o}r skapandet av datan p\IeC {\r a} en allm\IeC {\"a}n niv\IeC {\r a}}{21}{subsection.3.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3}Algoritmen i python kod}{22}{subsection.3.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1}Numpy arrays}{22}{subsubsection.3.3.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4}Loopen steg 3 till 7}{23}{subsection.3.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5}Loopen steg 8 till 11}{23}{subsection.3.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6}Export av datan}{24}{subsection.3.6}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7}Anpassning f\IeC {\"o}r utv\IeC {\"a}rderingsdatan}{24}{subsection.3.7}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.8}Skapandet av modellen}{24}{subsection.3.8}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.8.1}Representation av modellen}{24}{subsubsection.3.8.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.8.2}Tensorflow och Keras}{24}{subsubsection.3.8.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9}Tr\IeC {\"a}ning av n\IeC {\"a}tverket}{25}{subsection.3.9}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Resultat}{25}{section.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Diskussion och slutsats}{26}{section.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}Github}{26}{subsection.5.1}% 

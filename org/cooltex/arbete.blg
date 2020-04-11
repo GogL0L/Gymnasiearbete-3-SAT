@@ -1,0 +1,16 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is 'arbete.blg'
+[27] biber:315> INFO - === lör apr 11, 2020, 05:33:58
+[48] Biber.pm:371> INFO - Reading 'arbete.bcf'
+[112] Biber.pm:889> INFO - Found 5 citekeys in bib section 0
+[125] Biber.pm:4093> INFO - Processing section 0
+[135] Biber.pm:4254> INFO - Looking for bibtex format file 'gym.bib' for section 0
+[136] bibtex.pm:1512> INFO - LaTeX decoding ...
+[144] bibtex.pm:1329> INFO - Found BibTeX data source 'gym.bib'
+[175] Utils.pm:193> WARN - I didn't find a database entry for 'hedmanlogic' (section 0)
+[188] UCollate.pm:68> INFO - Overriding locale 'sv-SE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[188] UCollate.pm:68> INFO - Overriding locale 'sv-SE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[188] Biber.pm:3921> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'sv-SE'
+[196] bbl.pm:636> INFO - Writing 'arbete.bbl' with encoding 'UTF-8'
+[199] bbl.pm:739> INFO - Output to arbete.bbl
+[199] Biber.pm:110> INFO - WARNINGS: 1

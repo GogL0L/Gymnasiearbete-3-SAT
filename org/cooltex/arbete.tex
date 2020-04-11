@@ -1,7 +1,13 @@
-\docume\documentclass[11pt]{article}
+\documentclass[11pt]{article}
 \usepackage{amsmath, amssymb, amscd, amsthm, amsfonts}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{listings}
+\usepackage[backend=biber, style=authoryear-icomp]{biblatex}
+\addbibresource{gym.bib}
+%\usepackage{tikz}
+%\usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
+
 
 \oddsidemargin 0pt
 \evensidemargin 0pt
@@ -23,131 +29,1026 @@
 \newtheorem{corollary}[theorem]{Korollarium}
 \newtheorem{example}[theorem]{Exempel}
 
-\author{John Paul Edward Möller}
-\title{Djupinlärning av Neurala nätverk}
+%python listings format stuff
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{11} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{11}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+numbers=left,
+stepnumber=1,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+%\title{Title page with logo}
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\begin{center}
+  
+%\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE Klara Västra Teoretiska Gymnasium}\\[1.5cm] % Name of your university/college
+\textsc{\Large Gymnasiearbete}\\[0.5cm] % Major heading such as course name
+\textsc{\large John Möller}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Neurala nätverk och 3-SAT}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Handledare:}\\
+Gunnar \textsc{Karlsson} % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Medbedömare} \\
+Petter \textsc{Restadh} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \text{23 }{Januari }{2020}}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width=4in]{logo.png} % Include a department/university logo - this will require the graphicx package
+ 
+
+\end{center}
+\end{titlepage}
+
+%\author{John Paul Edward Möller}
+%\title{Neurala nätverk och 3-SAT}
+
+
+
+\newpage
+ 
+\section*{Abstract}
+\label{sec:orgbe41ca8}
+Many important problems such as protein folding, circuit design
+and breaking RSA encryption all fall under the complexity class NP. For
+many of these problems, the finding of a polynomial time algorithm would
+greatly be appreciated. Better circuit design would improve computing speed
+and faster protein folding could lead to a cure for cancer. But for problems
+such breaking RSA encryption, a polynomial time algorithm would not be as much
+appreciated as it would cause online banking to easily be hacked. If a
+polynomial time algorithm would be found to the 3-SAT problem it would also
+apply to all problems in the complexity class NP. A polynomial time algorithm
+to 3-SAT, or simply a proof of the existence or non-existence of one is yet
+to be found. Recently, advances in machine self-learning with the use of neural
+networks has lately shown much succes. Self taught AIs can now outperform 
+humans in many advanced games such as DOTA and Go. In this paper, 
+neural networks are trained to solve 3-SAT problems with fixed variable length
+in order to see what the results sugests regarding the finding of a 
+polynomial time algorithm.
+
+
+\newpage
+
 \tableofcontents
 
+\newpage
 
-\section{Anteckningar}
-\label{sec:org1d86332}
 
-\subsection{Förklara orden/förklara:}
-\label{sec:org2073c1a}
-Modul, dimension av vektor, vektorkomponent, list (python), parametrar
-till en funktion (python), funktionparameter på följande vis: f(arg1, arg2)
-Rectifier, Sigmoid, objekt orienterade termer (objekt och metod), softmax, 
-Stokastiskt gradient nedgång
-
-\subsection{Fixa:}
-\label{sec:org6ab3374}
-Att jag har skrivit numpy.funktion men bör bara konsekvent med np.funktion
-instället
-
-\subsection{Referenser:}
-\label{sec:org6e81812}
-Att 3-sat är ett NP problem och alla NP problem är ekvivalenta.
-
-\section{Abstract}
-\label{sec:org86ed8d4}
 \section{Inledning}
-\label{sec:orge571083}
-\subsection{Bakgrund}
-\label{sec:orgad0db53}
+\label{sec:orga1372b1}
+Många problem som datorer försöker lösa kan delas upp i två klasser: P och NP.
+P kan anses som problem som kan lösas 'snabbt' ('snabbt' defineras i teori). 
+Problem som faller under
+denna kategori är exempelvis multiplikation och att sortera namn i
+alfabetsordning \parencite{cooknp}. Om man definerar P som problem som kan lösas 'snabbt' så är
+NP problem som man kan kontrolera om ett svar är korrrekt 'snabbt'. Ett 
+exempel
+på detta är att primtals faktorisera. Om jag skulle fråga dig, läsaren att
+hitta delare till talet 2231 med endast penna och papper så skulle det nog
+tag ganska lång tid. Den enda metod du skulle ha förutom att använda
+delbarhetstester är att kolla varenda nummer lägre än 2231 och testa att 
+dela. Men om jag istället bad dig att kolla om svaret är 23 och 97 så 
+skulle det bli enklare. Då kan du helt enkelt ställa upp 23 gånger 97 
+och se om det blir 2231. Problemet anses vara i NP för att svaret kunde
+kontroleras 'snabbt'.
+
+
+I klassen NP så finns det en delmängd problem som kallas NP-fullständiga.
+NP-fullständiga problem är problem vars lösningsalgoritm kan användas för
+varenda problem i hela klassen NP. D.v.s det räcker att du hittar en "snabb"
+lösning för ett problem som är NP-komplett och då kan du lösa varenda problem
+i NP snabbt \parencite{cooknp}. Ett problem som faller under klassen NP-fullständiga problem är
+3-SAT, som är enkel att formulera matematisk då det inte primärt grundar
+sig på ett problem i verkligheten.
+
+
 \subsection{Syfte och Frågeställning}
-\label{sec:orgb03441e}
+\label{sec:org3353fd4}
+I detta arbete beskrivs skapandet av data som innehåller lösta 3-SAT problem 
+som kan användas för träningen av ett neuralt nätverk. Sedan beskrivs 
+konstruktionen av modellen för det neurala nätverket samt träningen av det
+nätverket med hjälp av den skapade datan. Syftet med denna uppgift är att 
+utforska frågan om hur bra neurala nätverk kan lösa 3-SAT problem för att
+nyansera frågan om en algoritm som löser 3-SAT i polynomisk tid är möjlig.
+Texten har också i syfte att undervisa om hur python fungerar i samband
+av matematiska undersökningar. 
 \section{Teori}
-\label{sec:orgc88c63a}
+\label{sec:orgc9ffa90}
+
+\subsection{Polynomisk tid}%
+\label{sub:polynomisk_tid}
+
+I inledningen så förklarades P som problem som kan lösas 'snabbt'.
+Det som menades med snabbt var att algoritmen löser den i polynomisk tid.
+Polynomisk tid innebär att antalet steg som krävs för att lösa
+problemet är en polynomisk funktion av storleken. T.ex om storleken
+på ett visst problem betecknas med variabeln $x$ och algoritmen som
+löser den utför det i $x^2 + 5x + 3$ steg så innebär det att algoritmen
+är i P och därmed är problemet dessutom i P. NP är därmed de problem där
+ett svar kan kontroleras i polynomisk tid. Vad som räknas som steg
+och vad som bör mätas i storleken kommer ej behandlas i denna text, men
+en rigorös definition kan läsas i boken 'A first Course in Logic' av
+Shawn \textcite{hedmanlogic}.
+
 \subsection{Propositionell logik}
-\label{sec:orgb6f265e}
+\label{sub:prop_log}
+
+I gymnasial matematik behandlar man främst oändliga
+mängder såsom de naturliga, reella och komplexa talen. Men mycket kan
+beskrivas med de minsta mängderna . Dock så vill man forfarande att det ska vara användbart.
+Den tomma mängden och en mängd med ett element är sannerligen små med de är inte särskillt
+användbara; en variabel kan ej ingå i en tom mängd och en variabel i en mängd
+med ett element är ju redan löst. Så vi kommer betrakta matematik som
+behandlar variabler som ingår i en mängd med två element. Sådan matematik
+kallas Propositionell logik.
+
+\begin{definition}
+\label{def:bool_var}
+Ett element i mängden $\mathbb{B} = \left\{ 0,1 \right\} $ kallas för ett
+booleskt värde.
+\end{definition}
+
+Likt de tidigare mängderna, kan $0$ och  $1$ symbolisera kvantiteter, men
+styrkan med booleska variabler är att $0$ och $1$ kan symbolisera saker som
+är i motsats till varandra. Detta kan vara falskt och sant, av och på, ner och
+upp o.s.v.  När propositionell logik diskuteras i fortsättningen av denna text
+kommer orden 'falskt' och 'sant' användas syonymt med siffrorna $0$ respektive $1$ .
+
+Med mängderna som de naturliga, reella och komplexa talen fanns det en tydlig
+betydelse av operationerna plus,minus,gånger och division. Detta är dock inte
+lika tydligt med booleska värden. Istället defineras följande två
+operationer.
+
+\begin{definition}
+\label{def:and}
+Om $A,B \in \mathbb{B}$ så är $A \land  B  $ lika med $1$ om och endast om $A$ och $B$ 
+är båda lika med $1$, annars är det lika med $0$. $A \land  B$ uttalas 'A och B'.
+\end{definition}
+
+\begin{definition}
+\label{def:or}
+Om $A,B \in \mathbb{B}$ så är $A  \vee  B$ lika med $0$ om och endast om både $A$
+och $B$ är lika med $0$, annars är det lika med $1$. $A \vee B$ uttalas 'A eller B'.
+\end{definition}
+
+\begin{example}
+\label{eg:sky}
+Låt påståendet 'Himlen är ibland blå' betecknas med variabeln $A$, låt påståendet
+'Himlen är ibland svart' betecknas med variabeln $B$ och låt påståendet 'Himlen
+är ibland grön' betecknas med variabeln $C$. Om vi instämmer på att himlen
+aldrig är grön så har vi:
+\[
+  A=1,B=1,C=0
+.\] 
+
+'Himlen är ibland blå och himlen är ibland svart' är sant. Detta  kan uttryckas
+som:
+\[
+A\land B = 1
+.\] 
+
+'Himlen är ibland blå och himlen är ibland grön' är falskt. Detta kan
+uttryckas som:
+\[
+A\land C = 0
+.\] 
+
+'Himlen är ibland blå eller himlen är ibland grön' är sant. Detta kan
+uttryckas som:
+\[
+A \vee C = 1
+.\] 
+\end{example}
+
+
+Som man ser i exempel \ref{eg:sky} så är definitionen för 'och' ganska synonymt
+till hur man använder ordet i vardagligt språk. Sista påståendet som använde
+'eller' översätts inte lika tydligt i vissa vardagliga uttryck, då det kan uppfattas
+som en fråga. Men i matematiska sammanhang är det alltid ett påstående.
+
+\begin{definition}
+\label{def:neg}
+Negationen av en boolesk variabel $A$ kan skrivas som $\overline{A}$.
+$\overline{A}=0$ då $A=1$ och $\overline{A} = 1$ då $A=0$.
+\end{definition}
+
+Det finns många fler operationer som kan defineras, men alla dessa kan
+defineras att kombinera operationerna 'och', 'eller' och negation.
+
+
+
+
+\begin{definition}
+\label{def:dis}
+En formel som endast innehåller operationen 'eller' samt negation d.v.s på formen $a_1 \vee a_2 \vee
+a_3  \ldots \overline{a_{n}} \vee \overline{a_{n+1}} \vee \overline{a_{n+2}}
+\ldots$ upp till $a_n$, kallas för en disjunktion.
+\end{definition}
+
+\begin{example}
+\label{eg:dis}
+Följande formel är ett exempel på en disjunktion:
+\[
+a_1 \vee \overline{a_2} \vee \overline{a_3} \vee \overline{a_1}
+.\] 
+\end{example}
+
+
+\begin{definition}
+\label{def:con}
+En formel som endast innehåller operationen 'och' samt negation d.v.s på formen 
+$a_1 \vee
+a_2 \vee a_3 \ldots a_{n} + a_{n+1}$ upp till $a_n$ kallas för en konjuktion.
+\end{definition}
+
+
+
+
+ 
+
+\subsection{3-SAT}%
+\label{sub:3sat}
+
+\begin{definition}
+\label{def:3sat}
+
+3-SAT är problemet om det finns en sann lösning till en formel som består av
+konjuktioner av disjuktioner, där varje disjunktion innehåller högst tre
+variabler.
+
+\end{definition}
+
+
+\begin{example}
+\label{eg:3sat}
+Formeln \[
+\left(  a_1 \vee a_2 \vee a_3 \right) \land \left( \overline{a_1} \vee a_2 \vee 
+\overline{a_3} \right)  .\] 
+
+är ett exempel på ett 3-SAT problem som är satisferbar, då den har lösningen $a_1,a_2,a_3=1$.
+\end{example}
+
+
 \subsection{Linjär algebra}
-\label{sec:org9ee1b01}
-\subsubsection{Vektor}
-\label{sec:org9afa89b}
-\subsubsection{Matris}
-\label{sec:org85403bc}
-\subsubsection{Matris vektor multiplikation}
-\label{sec:orgbc85b98}
-\subsection{Deep learning}
-\label{sec:org7cf406b}
+\label{linjar_alg}
+\subsubsection{Vektorer}
+\label{sec:orgcd44be6}
+
+En vektor är en lista av olika värden. Dimensionen av en vektor syftar på
+antalet element den har. Följande exempel visar en tredimensionell vektor.
+
+\begin{example}
+\label{eg:vector}
+En tredimensionell vektor
+\[
+\begin{bmatrix} 3 \\ 4 \\ 2 \end{bmatrix} 
+\] 
+
+\end{example}
+
+Addition av vektorer defineras endast när båda vektorerna har samma dimension,
+och sker på följande vis.
+
+\begin{definition}
+Addition av vektorer
+\label{def:add_vec}
+\[
+\begin{bmatrix} a_1 \\ a_2 \\ \ldots \\ a_n \end{bmatrix} +
+\begin{bmatrix} b_1 \\ b_2 \\ \ldots \\ b_n  \end{bmatrix} =
+\begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \\ \ldots \\ a_n + b_n  \end{bmatrix} 
+\] 
+\end{definition}
+
+\begin{example}
+\label{eg:vec_add}
+\[
+\begin{bmatrix} 2 \\ 3 \end{bmatrix} +
+\begin{bmatrix} 4 \\ 5 \end{bmatrix} =
+\begin{bmatrix} 6 \\ 8 \end{bmatrix} 
+\] 
+\end{example}
+
+
+
+Vektorer kan också multipliceras med ett reellt tal. Då multipliceras varje
+element i vektorn. Detta kallas skalärmultiplikation.
+
+\begin{definition}
+\label{def:vec_scal}
+Skalärmultiplikation
+
+\[
+k
+\begin{bmatrix} a_1 \\ a_2 \\ \ldots \\ a_n \end{bmatrix} =
+\begin{bmatrix} k a_1 \\ k a_2 \\ \ldots \ k a_n \end{bmatrix} 
+\] 
+
+\end{definition}
+
+\begin{example}
+\label{eg:vec_scal}
+\[
+3 \begin{bmatrix} 4 \\ 5 \\ 2 \end{bmatrix} =
+\begin{bmatrix} 3 \cdot 4 \\ 3 \cdot 5 \\ 3 \cdot 2  \end{bmatrix} =
+\begin{bmatrix} 12 \\ 15 \\ 6 \end{bmatrix} 
+\] 
+\end{example}
+
+
+
+
+
+\subsubsection{Matriser}
+\label{sec:org8cc7001}
+
+I denna sektion så kommer endast kvadratiska matriser behandlas samt
+defintionen för addition och multipliktation kommer förklaras på
+ett icke rigoröst sätt med exempel. Se 'Linjär Algebra' av \textcite{roy} för exakta definitioner.
+
+Matris addition defineras som hur man förväntar sig. Likt vektoraddition så
+adderas motsvarande position i matrisen med varandra.
+
+\begin{definition}
+\label{def:mat_add}
+Matris addition
+
+\[
+  \begin{bmatrix} 
+    a_1 & b_1 & c_1 \\
+    d_1 & e_1 & f_1 \\
+    g_1 & h_1 & i_1
+  \end{bmatrix} 
+  +
+  \begin{bmatrix} 
+    a_2 & b_2 & c_2 \\
+    d_2 & e_2 & f_2 \\
+    g_2 & h_2 & i_2
+  \end{bmatrix} 
+  =
+  \begin{bmatrix} 
+    a_1 + a_2 & b_1 + b_2 & c_1 + c_2 \\
+    d_1 + d_2 & e_1 + e_2 & f_1 + f_2 \\
+    g_1 + g_2 & h_1 + h_2 & i_1 + i_2
+  \end{bmatrix} 
+.\]
+\end{definition}
+
+\begin{example}
+\label{eg:mat_add}
+\[
+\begin{bmatrix} 
+  1 & 2 \\
+  3 & 4
+\end{bmatrix}
++
+\begin{bmatrix} 
+  5 & 6 \\
+  7 & 8 
+\end{bmatrix} 
+=
+\begin{bmatrix} 
+  6 & 8 \\
+  10 & 12
+\end{bmatrix} 
+.\] 
+\end{example}
+
+Vektorer kan också multipliceras med matriser. Vid matrismultiplikation så
+delas matrisen upp i två separata vektorer. Betrakta exempel
+\ref{eg:mat_vec}.
+
+\begin{example}
+\label{eg:mat_vec}
+Matrisen
+$
+  \begin{bmatrix} 
+    1 & 2\\
+    3 & 4
+\end{bmatrix} 
+$
+kan ses som vektorn 
+$
+\begin{bmatrix} 1 \\ 3 \end{bmatrix} 
+$
+och
+$
+\begin{bmatrix} 2 \\ 4 \end{bmatrix} 
+$
+.
+\end{example}
+
+När man multiplicerar en vekto med en matris så är det viktigt att matrisens
+bredd är lika med dimensionen av vektorn. Man kan se det som att första elementet i vektorn
+skalärmultiplicerar den första vektorn av matrisen, och det andra elementet
+skalärmultiplicerar den andra vektorn av matrisen o.s.v. Betrakta exempel
+\ref{matmult}.
+
+\begin{example}
+\label{matmult}
+
+\[
+  \begin{bmatrix} 
+    1 & 2 \\
+    3 & 4 
+  \end{bmatrix} 
+  \begin{bmatrix} 
+ 5 \\ 6 
+  \end{bmatrix} 
+  =
+  5 \begin{bmatrix} 
+ 1 \\ 3 
+  \end{bmatrix} 
+  +
+  6 \begin{bmatrix} 
+    2 \\ 4
+  \end{bmatrix} 
+  =
+  \begin{bmatrix} 
+  5 \\ 15
+  \end{bmatrix} 
+  +
+  \begin{bmatrix} 
+ 12 \\ 24 
+  \end{bmatrix} 
+  =
+  \begin{bmatrix} 
+    17 \\ 39
+  \end{bmatrix} 
+\] 
+\end{example}
+
+
+
+
+
+\subsection{Neurala nätverk}
+\label{sec:orgeafac22}
 \subsubsection{Bildlig förklaring}
-\label{sec:org3e22e03}
-\subsubsection{Linjär algebra}
-\label{sec:org3a4f7ea}
-\subsubsection{Flervariabel analys}
-\label{sec:org4389528}
-\begin{enumerate}
-\item Funktioner av flera variabler
-\label{sec:org2e40f1e}
-\item Paritalderivata
-\label{sec:orgaed94f5}
-\item 
-\label{sec:org229e890}
-\end{enumerate}
+Ett neuralt nätverk är trots dess komplexa struktur en vanlig funktion.
+Det tar in data och och ger ut ett svar. Vad som gör det speciellt
+är att man har efterliknat modellen till hur hjärnan fungerar.
+Det lär sig dessutom på samma sätt männsikor lär sig:genom träning med 
+exempel. Nätverket består av noder som är ordnade i lager.
+Varenda nod i det vänstra lagret är kopplad till varenda nod i nästa lager
+till höger, som i sig förhåller sig likadant till lagret till höger om sig
+(se figur 1). 
+
+\begin{figure}[h!]
+\label{network1} 
+\begin{center}
+\includegraphics[width=5in]{deepnetwork.png}
+\end{center}
+\caption{Nätverk med totalt fem lager} 
+\end{figure}
+
+\newpage
+
+För att få en bättre uppfattning så betraktar vi en enstaka nod (se figur
+2). För varje
+koppling så finns det ett assosierat värde, en så kallad vikt(variablerna $W1,W2,W3$). 
+Den högra nodens
+värde bestämms genom summan av varje nod till vänster gånger kopplingens
+vikt.
+Sedan används en så kallad aktiveringsfunktion på hela summan. Än så
+länge kan betydlesen av aktiveringsfunktionen ignoreras då det kommer tas upp
+senare.
+\begin{figure}[h!]
+  \label{onenode} 
+  \begin{center}
+    \includegraphics[width=3in]{singleneuron.png}
+  \end{center}
+  \caption{Allmän formel för värdet av en nod} 
+\end{figure}
+
+\newpage
+
+
+\begin{figure}[h!]
+  \label{egonenode}
+  \begin{center}
+    \includegraphics[width=3in]{egonenode.png}
+  \end{center}
+  \caption{Exempelvikter till en nod}
+\end{figure}
+
+\begin{example}
+\label{eg:onenode}
+
+För att räkna ut värdet för noden $a$ räknar man på följande vis: $a = 5 \cdot 1 + 4 \cdot
+3 = 17$.
+
+\end{example}
+
+\subsection{Formell definition}%
+\label{sub:formell_definition}
+
+Från att gå från ett lager till ett annat lager kan sybolisers med att ta en
+matris som består av vikterna gånger den vänstra lagret. Betrakta figur
+\ref{egmatris}.
+
+
+\begin{figure}[h!]
+  \label{egmatris}
+  \begin{center}
+     \includegraphics[width=2.5in]{network.png}
+  \end{center}
+  \caption{Ett nätverk som kan uttryckas med en matris} 
+\end{figure}
+
+Detta nätverk kan uttryckas som
+\[
+\begin{bmatrix} 
+  2 & 3 \\
+  10 & 0
+\end{bmatrix} 
+\begin{bmatrix} 
+  x \\ y
+\end{bmatrix} 
+=
+\begin{bmatrix} 
+  a \\ b
+\end{bmatrix} 
+.\] 
+
+Läsaren kan övertygas om detta genom att testa olika värden på $x$ och $y$ och
+se att $a$ och $b$ blir lika oavsett om man räknar genom figuren eller
+matrisen.
+
+Dock som det nämndes så används en aktiveringsfunktion på den totala summan. En
+klassisk aktiveringsfunktion i neurala nätverk är sigmoid funktionen. Den är
+definerad som följande.
+\begin{figure}
+$$  
+\sigma (x) = \frac{1}{1+e^{-x}}
+$$
+\caption{Definitionen av sigmoid funktionen}
+\end{figure}
+
+Sigmoids definitionsmängd är alla de reella talen och värdemängden är $0< 
+\sigma (x) < 1 $.
+
+Så om $W$ symboliserar matrisen av vikterna och $\vec{x}$ symboliserar vänstra
+lagret som en vektor, så kan formeln för att räkna ut det högra lagrets vektor
+$\vec{y}$ skrivas som:
+  \[
+    \vec{y} = \sigma (W \vec{x}) 
+ ,\] 
+
+givet att sigmoid är den valda aktiveringsfunktionen.
+
 \subsection{Grunderna till python och programering}
-\label{sec:org0b41e8c}
+\label{sec:org4513cda}
+\subsubsection{Programmering}
+\label{sec:orgcf55e18}
+ Programering är ett sätt att skriva instruktioner för vad en dator
+ska göra. Programmering utförs genom att skriva på ett "låtsas" språk
+i en textfil. Sedan låter man datorn översätta textfilen direkt till ett 
+program eller så låter man ett "tolk" program tolka instruktionerna i 
+textfilen och utföra de direkt. "Låtsas" språken kallas mer formellt som
+programspråk. De programspråk som kan översättas från en textfilen till ett 
+program kallas kompilerade programspråk; De programsspråk där intruktionerna 
+i textfilen tolkas direkt kallas interpreterade programspråk \parencite{cython}. 
+\subsubsection{Python}
+\label{sec:org6bd011b}
+Python är ett interpreterat programspråk. Detta är i fördel vid vetenskaplig
+programmering då man kan snabbt få resultat och inte behöva vänta på att
+koden kompileras. Instruktioner i python (och allmänt i programmering) ges
+genom att skriva funktioner. Funktioner i programmering är väldigt lika 
+till funktioner i matematik, men inte helt ekvivalenta. Funktioner i
+python kan likt matematiska funktioner ta in ett tal och utföra någon 
+operation och sedan mata ut det nya talet. Men den stora skillnaden är att
+en funktion i programmering kan också utföra ett moment. Detta kan vara
+att spara något i minnet, skicka ett medelande eller starta ett program. 
+Tillskillnad från matematik, där funktioner betecknas med enstaka bokstäver,
+så betecknas funktioner i programmering med ord eller mindre
+meningar där varje ord är separerad med understreck. Den mest fundementala
+och viktigaste funktionen vid lärning av  grunderna i python är funktionen
+$print$. 
+Funktionen talar om för tolkprogrammet att visa dess argument. Betrakta
+följande kod:
+
+
+
+\begin{python}
+print(5) 
+\end{python}
+
+En femma visas då i tolkprogrammet som konsekvens. Python kod utförs 
+uppifrån nedåt i ordning rad för rad. Så om man skriver
+
+\begin{python}
+print(5)
+print(4) 
+\end{python}
+
+så kommer det först stå en femma och sedan stå en fyra. Python räknar ut
+och förenklar automatiskt matematiska uttryck.
+
+\begin{python}
+print (9+10) 
+\end{python}
+
+Resultatet av ovanstående kod blir då 19 och inte "9+10". Om man vill
+bokstavligt skriva ut symbolerna nio, plustecken, etta och nolla så 
+omringar man uttrycket med citattecken.
+
+\begin{python}
+print ("9+10") 
+\end{python}
+
+
+      Resultatet av ovanstående kod blir då '9+10' tillskillnad från koden innan.
+      Värden kan sparas i variabler.
+\begin{python}
+number = 2+2
+text = "10+20+30"
+
+print(number)
+print(text) 
+\end{python}
+
+Resultatet av ovanstående kod blir då att '4' visas först på skärmen och sedan
+'10+20+30'. Alltså inte '60'. Eftersom python kan krångla om man använder de 
+svenska bokstäverna
+'åäö', så kommer kod i fortsättningen skrivas på engelska. Till varje
+variabel finns det en associerad typ. Variabeln $number$ i det tidigare
+exemplet har typen $int$, förkortning för ordet integer, d.v.s. typen
+för heltal. Variabeln text har typen $str$, förkortning för string, 
+för att syfta på att det är en sträng symboler som tolkas bokstavligt.
+Det är viktigt om man ska t.ex. plusa ihop två variabler, att de är
+av samma typ.
+
+\begin{python}
+number = 10
+text = "10"
+
+print(text + text)
+\end{python}
+
+Ovanstående kod ger ett felmedelande då python ser text variabeln
+som en sammling symboler och vet inte hur man lägger ihop dem med ett
+nummer. Om man väl har samma typ så har operationen plus
+olika betydelse.
+
+\newpage
+
+\begin{python}
+number = 10
+text = "10"
+
+print (number + number)
+print (text + text) 
+\end{python}
+
+Koden resulterar i att '20' först visas på skärmen och sedn '1010'
+Som man ser så utförs den matematiska operationen plus då variablerna 
+är av typen $int$. Om de är av typen $str$ så läggs symbolerna ihop.
+Det är dessutom viktigt att förstå att fast det är ett likhetstecken 
+så ska man tolka det mer som att det som är på högersida läggs
+in på vänster sida. 
+
+\begin{python}
+x = 5
+x = x + 10 
+print (x)
+\end{python}
+
+Den andra raden ser ut som ett felaktigt matematisk uttryck. Men det som
+sker är att första raden läses och python lägger in värdet 5 i variabeln x.
+Sedan läses andra raden och x + 10 räknas ut och sedan läggs det nya 
+värdet in i x. D.v.s. '15' visas tillslut på skärmen.
+\subsubsection{Funktioner och loops}
+\label{sec:org7998dae}
+Som sagt så kan funktioner i python fungera som vanliga matematiska funktioner.
+Om man vill programmera funktionen
+
+\[
+f(x) =  3x^2 + 4x + 5 
+\]
+
+så skriver man
+
+\begin{python}
+def f(x):
+  return 3 * x**2  +  4 * x  + 5
+
+value = f(5)
+print (value)
+\end{python}
+
+En stjärna betyder då multiplikation och två stjärnor betyder upphöjt.
+Men som det har tidigare nämnts så kan funktioner i python dessutom utföra 
+moment. Om man vill visa texten 'Hello world' och sedan resultatet av
+2+2 på skärmen, så kan man definera funktionen
+
+\begin{python}
+def f():
+  print ("Hello world")
+  print (2+2) 
+\end{python}
+
+Som man ser i ovanstående kod så behöver funktionen inte ta
+några variabler som argument tillskillnad från riktiga funktioner. 
+Man behövde dessutom inte skriva return då denna funktion enbart
+utförde något och inte gav tillbaka ett värde. En annan viktig observation
+är att alla instruktioner som tillhör funktionen är indenterade.
+
+Som det har tidigare 
+nämnts så är det mer korrekt enligt stilguiden att namge funktioner
+och variabler som ord eller meningar separerade med understreck. Så 
+funktionen \(f\) skulle kunna namnges som
+
+\begin{python}
+def do_something():
+  print ("Hello world")
+  print (2+2)
+\end{python}
+
+vilket är mer korrekt, även om de gör exakt samma sak.
+Dock om
+man skulle köra denna kod så skulle inget ske. Detta är p.g.a att 
+koden endast förklarar vad funktionen do\_something gör men utför aldrig
+den. För att utföra den så måste man skriva ut funktionen på en rad.
+
+\begin{python}
+def do_something():
+  print ("Hello world")
+  print (2+2)
+
+do_something() 
+\end{python}
+
+
+För att repetera någonting skriver man som följande.
+
+\begin{python}
+for number in range(0,4):
+  print(number) 
+\end{python}
+
+Observera att variabeln number börjar på 0 går sedan igenom alla heltal 
+lägre än fyra, men aldrig fyra i sig själv. 
+
+\subsubsection{Moduler och något om objekt}
+\label{sec:orga5ab640}
+
+Många användbara funktioner som är svåra att
+programmera har redan blivit kodade. Många av dessa
+finns tillgängliga genom moduler. En modul är
+en sammling funktioner och variabler man kan enkelt
+importera i sin egen kod. Antag att det finns en modul 
+som heter Volumecontrols som har funktionen mute\_volume. Givet att man 
+har instalerat modulen på sitt system så kan man importera modulen och 
+använda funktionen genom att skriva:
+
+\begin{python}
+import Volumecontrols
+
+Volumecontrols.mute_volume() 
+\end{python}
+
+Man skriver alltså modulens namn och ett punkttecken och sedan namnet på
+funktionen. Men det kan bli jobbigt att jämnt skriva modulnamnet 'Volumecontrols'
+jämnt så då kan man importera modulen med ett smeknamn genom:
+
+\begin{python}
+import Volumecontrols as vc
+
+vc.mute_volume() 
+\end{python}
+
+Många moduler används med objekt orienterad programmering. Objekt orienterad
+programmering är användingen av objekt. Ett objekt är en variabel som har
+associerade funktioner och värden. Dessa funktioner, och värden
+kan nås (likt moduler) genom att skriva namnet på objektet sedan ett 
+punkttecken, och sist namnet på värdet eller funktionen. Ett objekt skapas 
+genom att skriva namnet man vill ge på objektet på vänster sida av ett 
+likhetstecken och sedan en funktion som skapar objekt på höger sida.
+
+\begin{python}
+name_of_object = object_creating_method() 
+\end{python}
+
+Så om man fortsätter på exemplet med låtsas modulen Volumecontrols
+så kan man tänka sig att Volumecontrols kan skapa objekt för olika enheter
+som kan spela ljud i hemmet, t.ex sin tv eller dator. Och om man har
+objeketet my\_tv så kan man t.ex öka ljudet på sin tv med funktionen
+my\_tv.increase\_volume(), och så kan man se vilken nivå på ljudet med
+my\_tv.volume. Så om man vill skriva ett program som visar volymen på
+sin tv och sedan ökar den, så kan det se ut som följande.
+
+\begin{python}
+import Volumecontrols as vc
+my_tv = vc.create_object(96896)
+print (my_tv.volume)
+my_tv.increase.volume() 
+\end{python}
+
+Så den första raden är importeringen av modulen. I den andra raden
+skapas objektet. I detta exempel så tar funktionen som skapar objektet
+ett nummer. Detta symbolisera någon sorts ID på sin tv, så
+my\_tv blir just den TV man syftar på. På tredje raden visas volymen my\_tv
+har och på fjärde raden ökas volymen på my\_tv.
+
+Ett exempel på en typ som har objekt funktioner är list. En list är vad
+som det låter, en lista. En lista omringas av hakparanteser och elementen
+seprareras av kommatecken. Så om man vill ha en lista där första elementet
+är siffran 9, andra är siffran 8, och tredje 7 så skriver man som följande
+
+\begin{python}
+my_list = [9,8,7] 
+\end{python}
+
+Om man vill lägga till ett element kan man använda objektmetoden append.
+
+\begin{python}
+my_list = [9,8,7]
+my_list.append(5)
+print(my_list) 
+\end{python}
+
+resultatet av koden blir då att '[9,8,7,5]' visas på skärmen.
+
+
 \section{Metod}
-\label{sec:org8bc8527}
+\label{sec:org066f031}
 \subsection{Skapandet av datan}
-\label{sec:orgc85ca46}
+\label{sec:org9f440fc}
 \subsubsection{Krav på datan}
-\label{sec:org9c9ca05}
+\label{sec:org46d048e}
 Oavsett hur man bygger upp det neurala nätverket så behövs det
-data med exempel som är redan lösta. I detta arbete är syftet se om
+data med exempel som är redan lösta. I detta arbete är syftet att se om
 ett neuralt nätverk kan avgöra om ett 3-SAT problem är satisferbart
 eller inte. Alltså ska inputen vara ett 3-SAT problem och outputen vara
 en indikation på om det är satisferbart eller inte. För konstruktion
 av de neurala nätverk kommer modulen Tensorflow användas. Med den modulen
 krävs det att man har två listor: en för inputen och en för outputen. Alltså
-kommer första exemplets formell vara första elementet i inputlistan och
+kommer första exemplets formel vara första elementet i inputlistan och
 svaret kommer vara första elementet i outputlistan. I detta arbete valdes det
 60 000 träningsexempel och 10 000 utvärderingsexempel. Träningsexempelerna
 är de exempel det neurala nätverket kommer analysera och anpassa sig efter.
-Utvärderingsexemplerna är de som kommer användas i betygsättning av hur
+Utvärderingsexemplaren är de som kommer användas i betygsättning av hur
 bra nätverket fungerar. Anledningen varför dessa måste vara separata är att
-det är väldigt enkelt för neurala nätverk att endast memorera exemplerna
+det är väldigt enkelt för neurala nätverk att endast memorera exemplaren
 som användes vid träningen. Därför krävs det att exempelerna är unika
 så att inget exempel i träningsdatan finns dessutom i utvärderingsdatan.
 
-Ett annat krav är att inputen och outputen är i form av en vektor av
+Ett annat krav är att inputen och outputen är i form av en lista av
 reella värden. Detta är inte ett problem för outputen då man kan ha en
-2 dimensionell vektor där första värdet är sannolikheten att formeln är
-falsk och andra värdet är sannolikheten att den är sann (se exempel1). En
-lika tydlig lösning för inputen finns dock inte. Ett förslag är att 
+en dimensionell lista där första värdet är 1 eller noll
+En lika tydlig lösning för inputen finns dock inte. Ett förslag är att 
 associera ett värde till varje tecken och sedan låta antalet tecken
-beteckna dimensionen på vektorn (se exempel2). Som man dock ser i exempel
-(k0lla om det är två eller 2) två så är dimensionen av vektorn onödigt stor
+beteckna dimensionen på listan (se exempel \ref{eg:verbatim}). Som man dock ser i exempel
+\ref{eg:verbatim} så är dimensionen av vektorn onödigt stor
 då vissa tecken har alltid samma värde. De enda tecknen som kan vara olika
 är variablerna. I denna text kommer detta faktum utnyttjas, då antalet 
-variabler i uttrycket kommer motsvara dimensionen av vektorn. 
+variabler i uttrycket kommer motsvara dimensionen av listan. 
 
-\begin{enumerate}
-\item Figurer till parent sektion:
-\label{sec:org6a13527}
-exempel1, exempel2
-\end{enumerate}
+\begin{example}
+\label{eg:verbatim}
+
+Antag att man har 3-SAT formeln:
+\[
+  (a \vee b \vee c) \land (a \vee c \vee d)
+.\] 
+
+Då kan man t.ex assosiera följande kod till varje tecken.
+\begin{table}[h!]
+\begin{tabular}{ll}
+(                    & 1 \\
+)                    & 2 \\
+$\vee$                  & 3 \\
+$\land$                  & 4 \\
+a                    & 5 \\
+b                    & 6 \\
+c                    & 7 \\
+d                    & 8 
+\end{tabular}
+\end{table}
+
+
+Och då kan formeln översättas till följande lista.
+
+\[
+  [1,5,3,6,3,7,2,4,1,5,3,7,3,8,2]
+.\] 
+
+\end{example}
+
 
 \subsubsection{Omvandling av 3-SAT formler}
-\label{sec:org3afd24f}
-Låt variablerna i en formel ordnas i viss order, exempelvis alfabetsordning
+\label{sec:orgea8a832}
+Låt variablerna i en formel ordnas i en viss order, exempelvis alfabetsordning
 och sedan stigande i nummer index. Den första variabeln kommer motsvara
-värdet 1, den andra 2, den tredje 3 o.s.v. Sedan när man har kodat för
+värdet 0, den andra 1, den tredje 2 o.s.v. Sedan när man har kodat för
 den sista variabeln med värdet \(n\) så låter man \(n+1\) symbolisera
 negationen av den första variabeln och \(n+2\) negationen för den andra
-variabeln o.s.v. Sedan låtes det första variabeltecknet i formeln koda 
-för första värdet i vektorn och den andra den andra värdet 
-o.s.v. (se exempel3).
+variabeln o.s.v. Sedan låtes det variabeltecknet längst till vänster i formeln koda 
+för första värdet i vektorn och den andra längst till vänster det andra värdet 
+o.s.v. .
 
 I denna text kommer det dessutom begränsas till max 5 olika variabler
 i varje formel. Därmed så kan varje heltal (om man tar hänsyn till ledande
-nollor) symbolisera en unik formel (se exempel4). Detta löser nästan
+nollor) symbolisera en unik formel (se \ref{eg:satkod}). 
+
+\begin{example}
+\label{eg:satkod}
+Talet $013456025$ blir då formeln:
+\[
+  (x_0 \vee x_1 \vee x_3) \land (x_4 \vee \overline{x_0} \vee \overline{x_1})
+  \land (x_0 \vee x_2 \vee \overline{x_0})
+.\] 
+
+\end{example}
+
+
+Detta löser nästan
 problemet om att skapa 60 000 träningsexempel och 10 000 utvärderingsexempel
 som är alla unika. Eftersom varje heltal motsvarar en unik formel så kan man
-låta de talen från 0 till och med 59 999 koda för träningsexempelarna 
-och talen 60 000 till 69 999 koda för utvärderingsexempelarna. Dock, somsagt
+låta de talen från 0 till och med 59 999 koda för träningsexemplaren 
+och talen 60 000 till 69 999 koda för utvärderingsexemplaren. Dock, som sagt
 löser detta nästan problemet. Första problemet är att om man ska ha fem 
 stycken värdesiffror så kommer formelerna vara fem variabler långa. Men 
 ett 3-SAT problem är på formen av en konjuktion av disjuktioner av längden
@@ -156,45 +1057,213 @@ av tre. Det andra problemet är att formeln är kort och när en formel
 är kortare så är det mindre chans att det blir en falsk formel (om man 
 antar att antalet olika variabler håller sig konstant). Anledningen är att
 fler konjuktioner begränsar antalet möjliga lösningar (om antalet variabler
-håller sig konstant). Ett exempel på detta ges i (exempel5).
+håller sig konstant). Ett exempel på detta ges i  \ref{eg:restriction}.
 
-Lösningen på detta är att införa slumpmässiga siffror efter. På detta vis
+\begin{example}
+\label{eg:restriction}
+Om en lösning existerar för formeln:
+\[
+  (x_1 \vee x_2 \lor \overline{x_3}) \land (\overline{x_3} \vee x_4 \lor \overline{x_1})
+\] 
+
+så innebär det att den lösningen får båda paranteserna att bli sanna, eftersom
+båda sidor måste vara sanna enligt definitionen av $\land$. Det innebär att
+man kan plocka bort en parantes från formeln, och lösningen kommer fortfarande
+fungera på den nya formeln. Det samma kan dock inte sägas när man lägger till
+konjuktioner.
+
+\end{example}
+
+
+Lösningen på problemet är att införa slumpmässiga siffror efter. På detta vis
 kommer alla exempel vara unika, och längden kan anpassas till en multipel
-av tre. I denna text kommer längden vara 72 variabler d.v.s fem bestämda
+av tre. I denna text kommer längden vara 72 variabler d.v.s. fem bestämda
 siffror och 67 slumpmässiga.
 
-\begin{enumerate}
-\item Figurer till parent paragraf:
-\label{sec:orgca6f8d3}
-exempel3, exempel4, exempel5
-\end{enumerate}
 
 \subsubsection{Simple-Sat}
-\label{sec:orga22eb0e}
+\label{sec:org82b5e4d}
 Simple-sat är en 3-SAT lösare kodad av Sahand Saba, och används i detta
-arbete under MIT lisens. Den tar in en input i string format där varje
-konjuktion är separerad med ett komma och disjuktioner är separerade med 
-ett mellanslag.Så en variabel kan vara vilken kombination av bokstäver och
+arbete under MIT lisens. Den tar in en input av typen $str$ där varje
+konjuktion representeras med ett komma och disjuktioner av
+mellanslag. Så en variabel kan vara vilken kombination av bokstäver och
 siffror så länge det inte innehåller ett mellanslag. Det innebär att
 till skillnad från programspråk som python så kan en enkel siffra vara en
 unik variabel. Detta är i fördel till omvandlingen i denna metod eftersom
 varje siffra kodar en viss variabel. För att beteckna negationen används 
-tecknet tilde (\textasciitilde{}) framför variabeln utan mellanslag. Betrakta exempelA.
+tecknet tilde (\textasciitilde{}) framför variabeln utan mellanslag. 
 
-Problemet med detta program är att det kan endast bli kallad i en terminal.
-För att ka
+Problemet med detta program är att det kan endast bli tillkallad i en terminal.
+En terminal är ett helt textbaserat program som man kan skriva in kommandon
+till för att starta olika program. De främsta operativsystemen är egentligen
+en terminal som kör i bakgrunden och det grafiska användargränsnitt
+man har tillgänglig är ett program som körs genom terminalen. Om man använder
+windows så heter terminalprogrammet "CMD", på Ubuntu heter (den som ingår)
+bash. 3-SAT programmet är gjort för terminaler under operativsystem Linux.
+Så två problem måste lösas. Det första problemet är att omvandla en string av 
+siffror till en formel som 3-SAT programet kan tolka. Det andra problemet
+är hur man ska kunna intargera med detta program genom python, då programet
+är gjord för att användas i en terminal i linux.
 
-\begin{enumerate}
-\item fig stuff
-\label{sec:org45bc771}
-exempelA
-\end{enumerate}
 
-\subsubsection{Algoritm}
-\label{sec:orgc11c65d}
-\begin{enumerate}
-\item Algoritmen på en allmän nivå
-\label{sec:org5aa3f17}
+\subsubsection{Omvandling till formel}
+\label{sec:org9a327ad}
+För att omvandla en string av siffror till en string i det format 3-SAT
+programmet tar emot definerar vi funktionen generate\_formula. Generate\_formula tar 
+argumentet \textbf{seed} som är stringen av siffror. Funktionen inleds
+med att definera två variabler.
+
+\begin{python}
+digits = seed
+formula = []
+disjunct_counter  = 0
+\end{python}
+
+Seed döps om av den enkla anledningen att det kommer hjälpa med tydlighet
+i en loop som kommer senare. Formula variabeln är där alla tecken till
+formeln kommer läggas till. Vid slutet av programmet kommer elementen i 
+formula sättas ihop till formel stringen, men eftersom man har mer 
+kontroll med listor, defineras den som en tom lista i början. Variabeln
+disjunct\_counter räknar antalet variabler d.v.s siffror i stringen. Detta
+behövs eftersom vid varje tredje variabel läggs det till en konjuktion, eller
+i fallet av denna 3-SAT lösare ett komma.
+
+Nästa del är att gå igenom varje siffra i digits och utföra ett av två fall och
+eventuellt ett specialfall. Specialfallet är när disjunct counter är multipel
+av tre. Då vill man lägga till ett komma och ett mellanslag. Så den första
+if klasulen är:
+
+\begin{python}
+if disjunct_counter % 3 == 0:
+   formula.append(",")
+   formula.append(" ")
+\end{python}
+
+Det finns dock ett problem med denna kod. Noll är ju också en multipel av
+tre och det innebär att ett komma och ett mellanslag kommer läggas till
+i början av loopen då disjunct\_counter börjar på noll. Så därför lägger
+vi till kravet att disjunct\_counter är dessutom inte lika med noll.
+
+\begin{python}
+if disjunct_counter % 3 == 0 and disjunct_counter !=0:
+   formula.append(",")
+   formula.append(" ")
+\end{python}
+
+Sedan så finns det ett av två fall som alltid kommer ske exklusivt. Det ena
+är att siffran är lägre än fem och den andra är att siffran är högre eller
+lika med fem. Om siffran är lägre än fem så vill man lägga till siffran
+och ett mellanslag till formula listan. Om siffran är högre så vill man 
+lägga till tilde och en nolla om det är fem, tilde och en etta om det är sex
+o.s.v.. Alltså vill man därmed lägga till tilde och siffran minus 5, samt ett
+mellanslag. Dessa två fall kan skrivas som följande:
+
+\begin{python}
+if int(digit)<5 :
+    formula.append(str(digit))
+    formula.append(" " )
+else:
+    formula.append("~")
+    formula.append(str(int(digit)-5))
+    formula.append(" ")
+\end{python}
+
+Anledningen varför man lägger till str(digit) och inte bara digit är 
+eftersom digit är av typen Int. För att kunna sätta ihop listan formula
+så behövs det att alla element är av typen String. Funktionen str tar
+siffran och ger tillbaka samma siffra fast med typen String. För att
+sedan få funktionen att ge tillbaka formeln fast som en string skriver man:
+
+\begin{python}
+return "".join(formula) 
+\end{python}
+
+Funktionen "".join kanske ser märkligt ut först men det är helt enkelt
+en funktion som tar en lista och ger tillbaka en string där varje element
+är ihopsatt. Anledningen för den märkliga syntaxen är att det som är
+emellan citattecknena är det som kopplar ihop elementen, betrakta exempelA.
+Eftersom det inte ska vara något emellan elementen i listan formula
+så skrivs det ingenting mellan citattecknena och därmed skrivs det "".join.
+
+      Så funktionen i helhet ser ut som följande.
+\begin{python}
+def generate_formula(seed):
+   """Generates a formula that can be checked with the check function.
+   """
+   digits = seed
+   formula = []
+   disjunct_counter  = 0
+
+   for digit in digits:
+       if disjunct_counter % 3 == 0 and disjunct_counter != 0:
+           formula.append(",")
+           formula.append(" ")
+       if int(digit)<5 :
+           formula.append(str(digit))
+           formula.append(" " )
+           if debug:
+               print ("borde vara under 5: " + str(digit))
+       else:
+           formula.append("~")
+           formula.append(str(int(digit)-5))
+           formula.append(" ")
+           if debug:
+               print ("borde vara over 5: "+ str(digit))
+       disjunction_counter += 1
+
+   return "".join(formula)
+\end{python}
+
+\subsubsection{Satisferbarhet av formeln}
+\label{sec:org1ccbaf6}
+För att få tillgång till att skicka kommandon till terminalen via python 
+använder man modulen Subprocess. Funktionen subprocess.check\_output tar 
+in som argument ett terminal kommando och ger tillbaka resultatet av vad som 
+skrevs i terminalen. Dock så tar funktionen inte en string som input fast
+istället en lista som sedan läggs ihop till en string där varje element är
+separerad med mellanslag. För att tillkalla programmet i 
+terminalen skriver man: 
+
+\begin{python}
+python simple-sat/src/sat.py -ti "formula" 
+\end{python}
+
+Så om variabeln string innehåller formeln och om man vill spara formelns
+validitet i en variabel result i python, så skriver man:
+
+\begin{python}
+result = subprocess.check_output(["python",
+                                "simple-sat/src/sat.py",
+                                "-ti", string])
+\end{python}
+
+Programmet 3-SAT ger tillbaka en string med info om vad den satisferbara 
+lösning är, om formeln är satisferbar. Om den inte är satisferbar ges en tom
+string tillbaka. Eftersom informationen om det är satisferbar eller inte är
+det enda som är relevant i skapandet av datan så räcker det att kolla om 
+outputen är tom eller inte. På grund av hur python hanterar strings så finns
+det två sätt att skriva en tom string : '' och b''. 
+Funktionen ser då ut i sin helhet som följande:
+
+\begin{python}
+def check(string):
+   """Checks if a formula generated by the generate_formula method,
+   can be satisfied or not.
+   """
+ result = subprocess.check_output(["python",
+                                "simple-sat/src/sat.py",
+                                "-ti", 
+                                string])
+ if result == "" or result == b'':
+    return 0
+ else:
+    return 1
+
+\end{python}
+
+\subsection{Algoritmen för skapandet av datan på en allmän nivå}
+\label{sec:org605595e}
+
 \begin{enumerate}
 \item Skapa en tom lista för all träningsdata
 \item Skapa en tom lista för all utvärderingsdata
@@ -202,7 +1271,7 @@ exempelA
 \item Omvandla n till en lista med 5 värden
 \item Skapa en lista med 67 slumpmässiga värden
 \item Sätt ihop listorna från 2 och 3 till en ny lista
-\item Lägg till listan från 8 i input träningsdata listan (1)
+\item Lägg till listan från 8 i input träningsdata listan 1
 \item Omvandla listan från  8 till en formel
 \item Kolla om formeln från 10 är satisferbar
 \item Om den är satiferbar lägg till en etta i output träningsdatan
@@ -210,11 +1279,12 @@ exempelA
 \item Repetera steg 3 till 13 där n ökar med ett varje gång, tills n=69999
 \item Exportera datan
 \end{enumerate}
-\item Algortimen i python kod
-\label{sec:orgdd02eb6}
-\begin{enumerate}
-\item Numpy arrays
-\label{sec:org6fdb3bb}
+
+\subsection{Algoritmen i python kod}%
+\label{sub:algoritmen_i_python_kod}
+
+\subsubsection{Numpy arrays}
+
 För att översätta den allmänna koden till python så skulle det
 tekniskt gå att ha vanliga listor. Men p.g.a att det är så stora
 värden samt att vi vill senare kunna exportera dessa listor, så
@@ -223,22 +1293,14 @@ i numpy heter "numpy arrays". Numpy arrays fungerar i omfattningen
 av denna text i princip som vanliga lists. Enda skillnaden är att
 det inte går att direkt modifera dem. Om man vill ändra en variabel
 som innehåller en numpy array så måste man skapa en ny array baserad 
-på den gamla och sedan spara den nya i variabeln (betrakta kod1). För 
+på den gamla och sedan spara den nya i variabeln . För 
 att skapa en numpy array använder man funktionen numpy.array. Som 
 argument sätter man i en vanlig list som numpy arrayen kommer efterlikna. 
-Betrakta kod2.
 
-kod2 (eller 1?)
-\begin{verbatim}
-       import numpy
-
+\begin{python}
+import numpy
 numpy_array = numpy.array([4,2,0])
-\end{verbatim}
-
-
-Fotnot till kod2: Det är två paranteser p.g.a att man kan sätta in
-flera parametrar och de arrays man vill lägga ihop sätter man in
-i första parametern.
+\end{python}
 
 
 En sak man måste ta i hänsyn med numpy är att man måste specifiera vid
@@ -256,7 +1318,7 @@ Ett enkelt sätt att göra detta är med funktionen numpy.zeros. Numpy.zeros
 tar in en storlek som argument och skapar en numpy array fylld med nollor
 med den specifierade storleken. För att skapa en array med 5 nollor skriver
 man numpy.zeros(5). För att skapa en array fylld med 3 arrays där varje
-array har 2 nollor skriver man numpy.zeros((3,2)) (se kod3). 
+array har 2 nollor skriver man numpy.zeros((3,2)) . 
 
 Eftersom träningsdatan kommer vara en array där varje element är
 en array på 72 element, så skriver man numpy.zeros((1,72)). Ett problem
@@ -268,14 +1330,18 @@ koden så betecknas input med x och output med y. Notationen är inte för
 någon speciell anledning, för att det ska bli enklare att skriva
 variabeln. Så steg 1 och två kan översättas till följande kod:
 
-\begin{verbatim}
+\begin{python}
 import numpy as np
 
 x_train = np.zeros((1,72))
 y_train = np.array([])
-\end{verbatim}
-\item Loopen steg 3 till 7
-\label{sec:orga66736f}
+\end{python}
+
+\subsection{Loopen steg 3 till 7}%
+\label{sub:loopen_steg_3_till_7}
+
+
+
 Nästa del i koden är att påbörja loopen från steg 3 till 12. Första steget
 i loopen är att omvandla n till en lista med fem värdesiffror. För det
 första så är det mer korrekt enlight pythons rekomederade stilformat att
@@ -286,18 +1352,16 @@ nollor för att få Stringen att ha 5 värdesiffror. Sedan omvandlades den
 till en vanlig lista, och tillsist en numpy array. Steg 1 och 2 blev en rad
 och steg 3 och 4 blev också en rad. Koden såg ut som följande:
 
-kod4
-\begin{verbatim}
+\begin{python}
 num_string = str(num).zfill(5)
 head_array = np.array(int_list(num_string))
-\end{verbatim}
+\end{python}
 
 Steg 5 skrevs på följande vis:
 
-kod5
-\begin{verbatim}
+\begin{python}
 tail_array = np.random.randint(10, size=67)
-\end{verbatim}
+\end{python}
 
 Första argumentet anger då att alla heltal under det givna nummret
 får slumpmässigt skapas, och size parametern talar om för storleken av
@@ -305,118 +1369,95 @@ arrayen som skapas.
 
 För att sedan lägga ihop de två arraysen används np.concatenate.
 
-kod6
-\begin{verbatim}
+\begin{python}
 array_to_append = np.concatenate((head_array,tail_array))
-\end{verbatim}
+\end{python}
 
 Sedan för att lägga till denna array till träningsdatan använder
 np.concatenate för att updatera x\textsubscript{train}.
 
-kod7
-\begin{verbatim}
+\begin{python}
 x_train = np.concatenate((x_train, [array_to_append]))
-\end{verbatim}
+\end{python}
+
+\subsection{Loopen steg 8 till 11}%
+\label{sub:loopen_steg_8_till_11}
 
 
-\begin{enumerate}
-\item Figurer
-\label{sec:org3de209f}
-Kod1, Kod2, exempel6, kod3, figur1, kod4, kod5, kod6, kod7
-\end{enumerate}
-
-\item Loppen steg 8 till 11
-\label{sec:org6a1d168}
 För att se om formeln är satisferbar eller inte används en 3-SAT lösare 
 programerad av Sahand Saba under MIT licens. Sabas program körs egentligen
 via terminalen, men den är tillgänglig med modulen satsolver.py som finns
 beskriven i appendix I. Modulen innehåller två funktioner:
-satsolver.generate\textsubscript{formula} och satsolver.check. Satsolver.generate\textsubscript{formula}
+satsolver.generate\_formula och satsolver.check. Satsolver.generate\_formula
 tar en numpy array och omvandlar den enligt metoden beskriven i omvandling
 av 3-sat, till en formel satsolver.check kan ta som argument. Satsolver.check
 ger då värdet noll om formeln är ej satisferbar och värdet ett om 
 den är satisferbar. Så koden blir som följande:
 
-kod8
-\begin{verbatim}
+\begin{python}
 formula = sat.generate_formula(array_to_append)
 value_to_append = sat.check(formula)
 y_train = np.append(y_train, value_to_append)
-\end{verbatim}
+\end{python}
 
 Ett steg som inte står beskrivet i den allmänna algortimen, är att 
-radera det elementet i x\textsubscript{train}. Detta var som sagt p.g.a vid skapandet
-av x\textsubscript{train} behövdes ett element fylld av nollor som specifierade storleken
-på arrayen. Så för att radera det första elementet i x\textsubscript{train} används
+radera det elementet i x\_train. Detta var som sagt p.g.a vid skapandet
+av x\_train behövdes ett element fylld av nollor som specifierade storleken
+på arrayen. Så för att radera det första elementet i x\_train används
 följande kod:
 
-kod9
-\begin{verbatim}
+\begin{python}
 x_train = np.delete(x_train, 0, 0)
-\end{verbatim}
+\end{python}
 
 
 
+\subsection{Export av datan}%
+\label{sub:export_av_datan}
 
-\begin{enumerate}
-\item Figurer, kod och referatmarkörer
-\label{sec:org4869e8f}
-Sahanda Saba, referens till omvandling av 3-sat, kod8, kod9
-\end{enumerate}
-\item Export av datan
-\label{sec:org480d8f3}
 För att exportera numpy arrays används funktionen np.save. Funktionen tar
 in namnet på en filplats och numpy arrayen man vill spara. I detta projekt
 så sparades filerna i mapp kallad 'data'. Så exporterings koden såg ut som
 följande:
 
-\begin{verbatim}
+\begin{python}
 np.save('data/x_train', x_train)
 np.save('data/y_train', y_train)
-\end{verbatim}
+\end{python}
 
-\begin{enumerate}
-\item Kod saker:
-\label{sec:orgfbf2d4b}
-ko10
-\end{enumerate}
-\item Anpassning för utvärderingsdatan
-\label{sec:org99486c8}
+\subsection{Anpassning för utvärderingsdatan}%
+\label{sub:anpassning_for_utvarderingsdatan}
+
 Koden för utvärderingsdata är i princip likadan. Enda skillnaden är att
-num fick variera mellan 60 000 och 69 999 och datan sparades som x\textsubscript{test}
-och y\textsubscript{test} för input datan respektive output datan.
-\end{enumerate}
-\item Pythonkoden actually
-\label{sec:org7c02cee}
-\end{enumerate}
+num fick variera mellan 60 000 och 69 999 och datan sparades som x\_test
+och y\_test för input datan respektive output datan.
 \subsection{Skapandet av modellen}
-\label{sec:org664d262}
+\label{sec:orge3de517}
 \subsubsection{Representation av modellen}
-\label{sec:orgec1d225}
+\label{sec:org4b575f0}
 Modellen består alltså av 10 lager med 128 noder var, där Rectifier är 
-aktiveringsfunktionen. Det finns dessutom ett till lager i slutet som 
-består av endast en nod och har Sigmoid aktiveringsfunktionen (se figur2).
+aktiveringsfunktionen (en aktiveringsfunktion som inte är begränsad
+tillskillnad från sigmoid). Det finns dessutom ett till lager i slutet som 
+består av endast en nod och har Sigmoid aktiveringsfunktionen .
 \subsubsection{Tensorflow och Keras}
-\label{sec:org45977ab}
+\label{sec:orgfa744f9}
 För att skapa den här modellen i python används modulerna Tensorflow och 
 Keras. Tensorflow är en modul som tillåter en att bygga neurala nätverk från 
 grunden. Keras är en modul som som förenklar byggandet och träningen av 
 neurala nätverk. I koden kommer dessa moduler och delar modulerna importeras:
 
-kod11
-\begin{verbatim}
+\begin{python}
 import numpy as np
 from tensorflow import keras
 from tensorflow.keras.layers import Activation, Dense
-\end{verbatim}
+\end{python}
 
 För att skapa en tom modell som man sedan kan senare tillägga fler lager till 
 skriver man:
 
-kod12
-\begin{verbatim}
+\begin{python}
 model = keras.models.Sequential()  
-\end{verbatim}
+\end{python}
 
 Variabeln model blir då ett objekt som symboliserar det neurala nätverket.
 För tillägg av lager samt träning och utvärdering av modellen används
@@ -429,10 +1470,9 @@ matris, eller noder på rad, samt en associerad aktivationsfunktion. Så för
 att lägga till ett lager med 128 noder, och Rectifier som aktiveringsfunktionen
 skriver man:
 
-kod13
-\begin{verbatim}
+\begin{python}
 model.add(Dense(128, activation='relu'))  
-\end{verbatim}
+\end{python}
 
 relu symbolisera då Recitifier funktionen. Den här raden av kod repeteras
 då 10 gånger så att det blir totalt tio lager. Sista lagret är två noder
@@ -440,45 +1480,35 @@ där första noden är sannolikheten att det är noll och andra är sannolikhete
 att det är 1. Detta görs med aktiveringsfunktionen "softmax". Följande kod
 motsvarar detta lager:
 
-kod14
-\begin{verbatim}
+\begin{python}
 model.add(Dense(2, activation='softmax'))
-\end{verbatim}
+\end{python}
 
 
 
 
-\begin{enumerate}
-\item Saker
-\label{sec:org7033c50}
-kod11, kod12, figur2, kod13
-\end{enumerate}
 \subsection{Träning av nätverket}
-\label{sec:org6824ed3}
+\label{sec:org4076e3d}
 För träning av nätverket används "binary cross entropy" som loss funktion,
 'accuracy' som metric och stokastisk gradient nedgång som optimizer.
 'Binary crossentropy' och 'accuracy' förklaras ej i detta arbete men dokumentaion
-om dessa funktioner finns på [ref2]. För att träna nätverket och sedan
+om dessa funktioner finns på . För att träna nätverket och sedan
 utvärdera det skrivs följande kod:
 
-kod15
-\begin{verbatim}
-model.compile(optimizer = 'SGD', loss='binary_crossentropy', metrics=['accuracy'])
+\begin{python}
+model.compile(optimizer = 'SGD',
+            loss='binary_crossentropy', 
+            metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=5)
 model.evaluate(x_test, y_test, verbose=2)
-\end{verbatim}
+\end{python}
 
 Epochs är hur många gånger den går igenom all data. Så epoch 1 är första
 gången den går igenom datan epoch 2 andra gången o.s.v. Verbose variabeln 
 specifierar bara hur mycket information som printas ut. 
 
-\subsubsection{Stuff ref kod och sånt}
-\label{sec:org139c741}
-ref2, kod15
 \section{Resultat}
-\label{sec:orged1fe25}
-\subsection{Model 1}
-\label{sec:orgb7cc8ed}
+\label{sec:org022bc4a}
 \begin{center}
 \begin{tabular}{rll}
 Epoch & tid & resultat\\
@@ -493,43 +1523,28 @@ Epoch & tid & resultat\\
 
 Och för träningsdatan var resultatet 50 \%.
 \section{Diskussion och slutsats}
-\label{sec:orgb4193fa}
-\subsection{Sannolikhet att liknande (och därmed samma) sat formler fanns}
-\label{sec:org867bd73}
-\subsection{Presicionen var bara 50\% som är lika med en gissning.}
-\label{sec:orgf3746df}
+\label{sec:orgd3f42b4}
 Som man ser så var resultatet på samtliga delar av utvärderingsprocessen 
 50 \%. Detta tyder med säkerhet att nätverket inte har hittat något mönster
 då det är lika med chansen för en gissning. Detta stödjer kontentan bland 
-forskare att P är skiljt från NP (ref3). Eftersom om det finns en tydligt 
+forskare att P är skiljt från NP \parencite{pnpopinion}. Eftersom om det finns en tydligt 
 mönster som neurala nätverk kan se så skulle det öka chansen att det finns 
 en enklare algortim för 3-SAT problem av allmänn storlek, som är tillräckligt 
 enkel så att den är i polynomisk tid. Detta utesluter såklart dock inte att
 neurala nätverk kan tränas att lösa 3-SAT problem. På grund av att koden
 behövde köras på en persondator, så var antalet lager, noder, epochs, och
 träningsexempel begränsade till processorkraften och minnet tillgängligt.
-\subsubsection{Ref och sånt}
-\label{sec:org1360f91}
-ref3
-\subsection{Att man använder neurala nätverk för tydliga mönster och inte resonemang}
-\label{sec:orgb1fc944}
-\subsection{Samtidigt att det finns ingen teori om hur man känner igen människo ansikten}
-\label{sec:org03ab628}
-\subsection{Vad innebär att det finns en polynomisk algoritm för 3-sat}
-\label{sec:orgcbb362b}
-\subsubsection{Banksystem faller}
-\label{sec:org1de9b67}
-\subsection{Vidare forskning}
-\label{sec:org5c7f9cb}
-\subsubsection{Djupare nätverk}
-\label{sec:org67fe8f8}
-\begin{enumerate}
-\item 
-\label{sec:orgdaaa714}
-\end{enumerate}
 
-\section{Appendix}
-\label{sec:org43bc716}
-\subsection{I}
-\label{sec:org97024b7}
+
+
+\printbibliography
+
+\subsection{Github}%
+\label{sub:github}
+Alla program samt diagram som användes i samband med detta arbete
+finns tillgängliga i följande github repo:
+
+
+
+
 \end{document}

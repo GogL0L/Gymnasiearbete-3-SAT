@@ -36,8 +36,8 @@
   in order to see what the results sugests regarding the finding of a 
   polynomial time algorithm.
 * Inledning
-    Många problem som datorer försöker lösa kan delas upp i två klasser: P och NP.
-    P kan anses som problem som kan lösas "snabbt" ("snabbt" defineras i teori). 
+  Många problem som datorer försöker lösa kan delas upp i två klasser: P och NP.
+  P kan anses som problem som kan lösas "snabbt" ("snabbt" defineras i teori). 
     Problem som faller under
     denna kategori är exempelvis multiplikation och att sortera namn i
     alfabetsordning. Om man definerar P som problem som kan lösas "snabbt" så är

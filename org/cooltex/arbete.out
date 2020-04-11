@@ -1,44 +1,38 @@
-\BOOKMARK [1][-]{section.1}{Anteckningar}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{F\366rklara orden/f\366rklara:}{section.1}% 2
-\BOOKMARK [2][-]{subsection.1.2}{Fixa:}{section.1}% 3
-\BOOKMARK [2][-]{subsection.1.3}{Referenser:}{section.1}% 4
-\BOOKMARK [1][-]{section.2}{Abstract}{}% 5
-\BOOKMARK [1][-]{section.3}{Inledning}{}% 6
-\BOOKMARK [2][-]{subsection.3.1}{Bakgrund}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.2}{Syfte och Fr\345gest\344llning}{section.3}% 8
-\BOOKMARK [1][-]{section.4}{Teori}{}% 9
-\BOOKMARK [2][-]{subsection.4.1}{Propositionell logik}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.2}{Linj\344r algebra}{section.4}% 11
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Vektor}{subsection.4.2}% 12
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Matris}{subsection.4.2}% 13
-\BOOKMARK [3][-]{subsubsection.4.2.3}{Matris vektor multiplikation}{subsection.4.2}% 14
-\BOOKMARK [2][-]{subsection.4.3}{Deep learning}{section.4}% 15
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Bildlig f\366rklaring}{subsection.4.3}% 16
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Linj\344r algebra}{subsection.4.3}% 17
-\BOOKMARK [3][-]{subsubsection.4.3.3}{Flervariabel analys}{subsection.4.3}% 18
-\BOOKMARK [2][-]{subsection.4.4}{Grunderna till python och programering}{section.4}% 19
-\BOOKMARK [1][-]{section.5}{Metod}{}% 20
-\BOOKMARK [2][-]{subsection.5.1}{Skapandet av datan}{section.5}% 21
-\BOOKMARK [3][-]{subsubsection.5.1.1}{Krav p\345 datan}{subsection.5.1}% 22
-\BOOKMARK [3][-]{subsubsection.5.1.2}{Omvandling av 3-SAT formler}{subsection.5.1}% 23
-\BOOKMARK [3][-]{subsubsection.5.1.3}{Simple-Sat}{subsection.5.1}% 24
-\BOOKMARK [3][-]{subsubsection.5.1.4}{Algoritm}{subsection.5.1}% 25
-\BOOKMARK [2][-]{subsection.5.2}{Skapandet av modellen}{section.5}% 26
-\BOOKMARK [3][-]{subsubsection.5.2.1}{Representation av modellen}{subsection.5.2}% 27
-\BOOKMARK [3][-]{subsubsection.5.2.2}{Tensorflow och Keras}{subsection.5.2}% 28
-\BOOKMARK [2][-]{subsection.5.3}{Tr\344ning av n\344tverket}{section.5}% 29
-\BOOKMARK [3][-]{subsubsection.5.3.1}{Stuff ref kod och s\345nt}{subsection.5.3}% 30
-\BOOKMARK [1][-]{section.6}{Resultat}{}% 31
-\BOOKMARK [2][-]{subsection.6.1}{Model 1}{section.6}% 32
-\BOOKMARK [1][-]{section.7}{Diskussion och slutsats}{}% 33
-\BOOKMARK [2][-]{subsection.7.1}{Sannolikhet att liknande \(och d\344rmed samma\) sat formler fanns}{section.7}% 34
-\BOOKMARK [2][-]{subsection.7.2}{Presicionen var bara 50\045 som \344r lika med en gissning.}{section.7}% 35
-\BOOKMARK [3][-]{subsubsection.7.2.1}{Ref och s\345nt}{subsection.7.2}% 36
-\BOOKMARK [2][-]{subsection.7.3}{Att man anv\344nder neurala n\344tverk f\366r tydliga m\366nster och inte resonemang}{section.7}% 37
-\BOOKMARK [2][-]{subsection.7.4}{Samtidigt att det finns ingen teori om hur man k\344nner igen m\344nnisko ansikten}{section.7}% 38
-\BOOKMARK [2][-]{subsection.7.5}{Vad inneb\344r att det finns en polynomisk algoritm f\366r 3-sat}{section.7}% 39
-\BOOKMARK [3][-]{subsubsection.7.5.1}{Banksystem faller}{subsection.7.5}% 40
-\BOOKMARK [2][-]{subsection.7.6}{Vidare forskning}{section.7}% 41
-\BOOKMARK [3][-]{subsubsection.7.6.1}{Djupare n\344tverk}{subsection.7.6}% 42
-\BOOKMARK [1][-]{section.8}{Appendix}{}% 43
-\BOOKMARK [2][-]{subsection.8.1}{I}{section.8}% 44
+\BOOKMARK [1][-]{section.1}{Inledning}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Syfte och Fr\345gest\344llning}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Teori}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Polynomisk tid}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{Propositionell logik}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{3-SAT}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.4}{Linj\344r algebra}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Vektorer}{subsection.2.4}% 8
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Matriser}{subsection.2.4}% 9
+\BOOKMARK [2][-]{subsection.2.5}{Neurala n\344tverk}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Bildlig f\366rklaring}{subsection.2.5}% 11
+\BOOKMARK [2][-]{subsection.2.6}{Formell definition}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.7}{Grunderna till python och programering}{section.2}% 13
+\BOOKMARK [3][-]{subsubsection.2.7.1}{Programmering}{subsection.2.7}% 14
+\BOOKMARK [3][-]{subsubsection.2.7.2}{Python}{subsection.2.7}% 15
+\BOOKMARK [3][-]{subsubsection.2.7.3}{Funktioner och loops}{subsection.2.7}% 16
+\BOOKMARK [3][-]{subsubsection.2.7.4}{Moduler och n\345got om objekt}{subsection.2.7}% 17
+\BOOKMARK [1][-]{section.3}{Metod}{}% 18
+\BOOKMARK [2][-]{subsection.3.1}{Skapandet av datan}{section.3}% 19
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Krav p\345 datan}{subsection.3.1}% 20
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Omvandling av 3-SAT formler}{subsection.3.1}% 21
+\BOOKMARK [3][-]{subsubsection.3.1.3}{Simple-Sat}{subsection.3.1}% 22
+\BOOKMARK [3][-]{subsubsection.3.1.4}{Omvandling till formel}{subsection.3.1}% 23
+\BOOKMARK [3][-]{subsubsection.3.1.5}{Satisferbarhet av formeln}{subsection.3.1}% 24
+\BOOKMARK [2][-]{subsection.3.2}{Algoritmen f\366r skapandet av datan p\345 en allm\344n niv\345}{section.3}% 25
+\BOOKMARK [2][-]{subsection.3.3}{Algoritmen i python kod}{section.3}% 26
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Numpy arrays}{subsection.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.4}{Loopen steg 3 till 7}{section.3}% 28
+\BOOKMARK [2][-]{subsection.3.5}{Loopen steg 8 till 11}{section.3}% 29
+\BOOKMARK [2][-]{subsection.3.6}{Export av datan}{section.3}% 30
+\BOOKMARK [2][-]{subsection.3.7}{Anpassning f\366r utv\344rderingsdatan}{section.3}% 31
+\BOOKMARK [2][-]{subsection.3.8}{Skapandet av modellen}{section.3}% 32
+\BOOKMARK [3][-]{subsubsection.3.8.1}{Representation av modellen}{subsection.3.8}% 33
+\BOOKMARK [3][-]{subsubsection.3.8.2}{Tensorflow och Keras}{subsection.3.8}% 34
+\BOOKMARK [2][-]{subsection.3.9}{Tr\344ning av n\344tverket}{section.3}% 35
+\BOOKMARK [1][-]{section.4}{Resultat}{}% 36
+\BOOKMARK [1][-]{section.5}{Diskussion och slutsats}{}% 37
+\BOOKMARK [2][-]{subsection.5.1}{Github}{section.5}% 38
