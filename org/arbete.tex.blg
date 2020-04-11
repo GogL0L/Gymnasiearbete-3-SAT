@@ -1,5 +1,0 @@
-[0] Config.pm:304> INFO - This is Biber 2.12
-[0] Config.pm:307> INFO - Logfile is 'arbete.tex.blg'
-[26] biber:315> INFO - === lör apr 11, 2020, 01:17:49
-[53] Utils.pm:209> ERROR - Cannot find control file 'arbete.tex.bcf'! - Did latex run successfully on your .tex file before you ran biber?
-[53] Biber.pm:114> INFO - ERRORS: 1
