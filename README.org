@@ -1,7 +1,8 @@
 * Neurala nätverk och 3-SAT
-I detta repo existerar all kod som nämns i gymnasiearbete om
+I detta repo existerar all kod som nämns i mitt gymnasiearbete om
 neurala nätverk och 3-SAT. Själva gymnasiearbetet finns i /tex/arbete.pdf.
 I repot finns också en org version av arbetet, men eftersom det användes mest
 i syfte för att anteckna så är den inte lika komplett och uppdaterad.
 
-Repot för simple-sat av Sahand Sava finns tillgänglig här:
+Repot för simple-sat av Sahand Saba finns tillgänglig här:
+https://github.com/sahands/simple-sat
